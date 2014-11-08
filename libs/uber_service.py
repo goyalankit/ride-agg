@@ -8,8 +8,8 @@ class UberService(BaseService):
     def make_request(self, url_type, parameters):
         config = webapp2.get_app().config.get('uber')
         parameters.update({ 'server_token': config.get('server_token')})
-        response = requests.get(config.get('url_type'), params=parameters)
-        return response.json
+        response = requests.get(config.get(url_type), params=parameters)
+        return response.json()
 
     def name(self):
         return "Uber"
@@ -27,12 +27,11 @@ class UberService(BaseService):
                 'longitude': -122.418028
         }
 
-        result = make_request("price_url", params)
-        import pdb; pdb.set_trace()
-        return 32
+        result = self.make_request("products_url", params)
+        return result
 
     def get_extra_information(self):
-        self.create_request("product_url", {"col": "yeh"})
+        #self.make_request("product_url", {"col": "yeh"})
         return 43
 
     def get_min_response_time(self):

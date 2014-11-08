@@ -9,9 +9,8 @@ class MainHandler(BaseHandler):
     def get(self):
 	config = self.app.config
         uber = UberService()
-        uber.get_extra_information()
         template_values = {}
-        template_values["hello"] = uber.get_min_response_time()
+        template_values["hello"] = uber.get_fare_by_distance(1)
         self.render_response('default.html',template_values)
 
 class IndexHandler(BaseHandler):
