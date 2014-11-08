@@ -1,6 +1,15 @@
+import webapp2
 from base_service import BaseService
+import requests
 
 class UberService(BaseService):
+
+    # TODO(goyalankit) add error handling code
+    def make_request(self, url_type, parameters):
+        config = webapp2.get_app().config.get('uber')
+        parameters.update({ 'server_token': config.get('server_token')})
+        response = requests.get(config.get('url_type'), params=parameters)
+        return response.json
 
     def name(self):
         return "Uber"
@@ -13,9 +22,17 @@ class UberService(BaseService):
         return 12
 
     def get_fare_by_distance(self, distance):
+        params = {
+                'latitude': 37.775818,
+                'longitude': -122.418028
+        }
+
+        result = make_request("price_url", params)
+        import pdb; pdb.set_trace()
         return 32
 
     def get_extra_information(self):
+        self.create_request("product_url", {"col": "yeh"})
         return 43
 
     def get_min_response_time(self):

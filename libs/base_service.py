@@ -1,16 +1,16 @@
 import abc
 
-class BaseService(object):
+class BaseService:
     __metaclass__ = abc.ABCMeta
 
-    @abstractproperty
+    @abc.abstractproperty
     def name(self):
         """Return the name of the API implementing
         the method.
         """
         return
 
-    @abstractproperty
+    @abc.abstractproperty
     def has_api(self):
         """Return True if an API is present for
         the service implementing the method. Else
