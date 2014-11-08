@@ -12,7 +12,7 @@ class MainHandler(BaseHandler):
         self.render_response('default.html',template_values)
 
 class IndexHandler(BaseHandler):
-    def get(self)
+    def get(self):
         template_values = {}
         template_values["hello"] = "hello"
         self.render_response('index.html',template_values)
