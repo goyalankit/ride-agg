@@ -23,18 +23,18 @@ body {
 }
 
 .logo {
-  background-color: black;
-  opacity: 0.5;
-  color: #fff;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: yellow;
   font-weight:800;
   font-size:14pt;
   padding:25px;
   text-align:center;
 }
-.logo a {
 
-  color: #fff;
+.logo a {
+  color: #FFD300;
   text-decoration: none;
+  z-index: 1;
 }
 
 .line {
@@ -44,9 +44,15 @@ body {
   white-space:no-wrap;
   overflow:hidden;
   text-align:center;
+  height: 10%;
   color: #f12
 }
 
 .container-top {
   margin-top: 3%;
+}
+
+#submitbtn {
+  width: 102%;
+  margin-left: -1%;
 }
