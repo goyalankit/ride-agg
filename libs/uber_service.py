@@ -2,6 +2,12 @@ from base_service import BaseService
 
 class UberService(BaseService):
 
+    def name(self):
+        return "Uber"
+
+    def has_api(self):
+        return True
+
     def get_fare_by_lat_lang(self, src_lat, src_long,
             dst_lat, dst_long):
         return 12
