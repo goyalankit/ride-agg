@@ -23,14 +23,23 @@ body {
 }
 
 .logo {
-  color: #fcc;
+  background-color: black;
+  opacity: 0.5;
+  color: #fff;
   font-weight:800;
   font-size:14pt;
   padding:25px;
   text-align:center;
 }
+.logo a {
+
+  color: #fff;
+  text-decoration: none;
+}
 
 .line {
+  background-color: black;
+  opacity: 0.4;
   padding-top:20px;
   white-space:no-wrap;
   overflow:hidden;
