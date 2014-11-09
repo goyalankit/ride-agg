@@ -11,6 +11,7 @@ class MainHandler(BaseHandler):
         uber = UberService()
         template_values = {}
 #        template_values["hello"] = uber.get_fare_by_distance(1)
+        #self.render_response('google_maps_test.html',template_values)
         self.render_response('default.html',template_values)
 
 class IndexHandler(BaseHandler):
