@@ -35,13 +35,32 @@ function calcRoute() {
   var request = {
       origin:start,
       destination:end,
-      travelMode: google.maps.TravelMode.DRIVING
+      travelMode: google.maps.TravelMode.DRIVING,
+      unitSystem: google.maps.UnitSystem.METRIC
   };
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
+response.routes[0].legs[0].distance
       directionsDisplay.setDirections(response);
+      $r_response = response;
     }
   });
+
+  makeRequestForFares($r_response);
+}
+
+function makeRequestForFares(gmap_response) {
+    params = []
+    for (var i = 0; i < gmap_response.routes.length; i++) {
+      for (var j = 0; j < gmap_response.routes[i].legs.length; j++) {
+        // remove steps. They are too much data and we don't need it.
+        delete gmap_response.routes[i].legs[j].steps
+        params.push(gmap_response.routes[i].legs[j]);
+      }
+    }
+    $.post('/', {data: JSON.stringify(params)}, function(result) {
+     // ... Process the result ...
+    }, 'json');
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
