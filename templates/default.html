@@ -1,19 +1,20 @@
 {% include 'header.html' %}
 <link href="/static/libs/css/default.css" rel="stylesheet">
 <body>
+  <!-- Header Image -->
   <div class="wide">
     <div class="col-xs-5 line"></div>
     <div class="col-xs-2 logo"><a href="#">Ride Aggregator</a></div>
     <div class="col-xs-5 line"></div>
   </div>
 
+  <!-- Location Form -->
   <div class="container container-top">
     <form id="productForm" class="form-horizontal" action="/query.json">
       <div class="form-group">
-          <!--<label class="col-sm-4 control-label">Source</label>-->
           <div class="col-sm-4 col-md-offset-4 inputGroupContainer">
               <div class="input-group">
-                  <input type="text" class="form-control" name="source" placeholder="Source"/>
+                  <input type="text" class="form-control" id="sourceTextField" name="source" placeholder="Source"/>
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-screenshot"></span>
                   </span>
@@ -21,24 +22,22 @@
           </div>
       </div>
       <div class="form-group">
-          <!--<label class="col-sm-4 control-label">Destination</label>-->
           <div class="col-sm-4 col-md-offset-4 inputGroupContainer">
               <div class="input-group">
-                  <input type="text" class="form-control" name="destination" placeholder="Destination"/>
+                  <input type="text" class="form-control" name="destination" id="destinationTextField" placeholder="Destination"/>
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-screenshot"></span>
                   </span>
               </div>
           </div>
       </div>
-
       <div class="col-sm-4 col-md-offset-4 inputGroupContainer">
         <button type="submit" class="btn btn-success btn-block" id="submitbtn">Get Fares</button>
-        <!--<button type="submit" class="btn btn-large">Search</button>-->
       </div>
     </form>
   </div>
 
+  <!-- Footer. Add some stuff to it. -->
  <div class="bottom-wide">
     <div class="col-xs-5 line"><hr></div>
     <div class="col-xs-2"><hr></div>
