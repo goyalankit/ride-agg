@@ -1,0 +1,46 @@
+meru:
+  mumbai:
+    service_type:
+      "Meru Cabs":
+        1:
+          fare_per_km: 20.0
+          fare_fixed_for_km: 1
+          fixed_fare: 27
+          waiting_charges: 2.0
+          service_tax: 4.94
+          city: "mumbai"
+          time_from: "5:00am"
+          time_to: "mid-night"
+          currency: "rs"
+        2:
+          fare_per_km: 25.0
+          fare_fixed_for_km: 1
+          fixed_fare: 33.75
+          waiting_charges: 2.5
+          service_tax: 4.94
+          city: "mumbai"
+          time_from: "mid-night"
+          time_to: "5:00am"
+          currency: "rs"
+    service_type:
+      "Meru Flexi":
+        1:
+          fare_per_km: 23.0
+          fare_fixed_for_km: 8
+          fixed_fare: 200
+          waiting_charges: 2.50
+          service_tax: 4.94
+          city: "mumbai"
+          time_from: "5:00am"
+          time_to: "mid-night"
+          currency: "rs"
+        2:
+          fare_per_km: 23.0
+          fare_fixed_for_km: 8
+          fixed_fare: 200
+          waiting_charges: 2.50
+          service_tax: 4.94
+          city: "mumbai"
+          time_from: "5:00am"
+          time_to: "mid-night"
+          currency: "rs"
