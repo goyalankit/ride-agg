@@ -8,36 +8,7 @@
     <div class="col-xs-5 line"></div>
   </div>
 
-  <!-- Location Form -->
-  <div class="container container-top" ng-controller='MyController'>
-    <form id="productForm" class="form-horizontal" action="/query.json">
-      <div class="form-group">
-          <div class="col-sm-4 col-md-offset-4 inputGroupContainer">
-              <div class="input-group">
-                  <input type="text" class="form-control" id="sourceTextField" name="source" placeholder="Source"/>
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-screenshot"></span>
-                  </span>
-              </div>
-          </div>
-      </div>
-      <div class="form-group">
-          <div class="col-sm-4 col-md-offset-4 inputGroupContainer">
-              <div class="input-group">
-                  <input type="text" class="form-control" name="destination" id="destinationTextField" placeholder="Destination"/>
-                  <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-screenshot"></span>
-                  </span>
-              </div>
-          </div>
-      </div>
-      <div class="col-sm-4 col-md-offset-4 inputGroupContainer">
-        <button type="submit" class="btn btn-success btn-block" id="submitbtn">Get Fares</button>
-      </div>
-    </form>
-  </div>
-
-
+  <div class="main" ng-view></div>
 
   <!-- Footer. Add some stuff to it. -->
   <div class="bottom-wide-stuff">

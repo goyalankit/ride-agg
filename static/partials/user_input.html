@@ -1,0 +1,32 @@
+<section class="artistpage">
+ <!-- Location Form -->
+  <div class="container container-top">
+    <form id="productForm" class="form-horizontal" ng-submit="submit()" ng-controller="UserInputController">
+      <div class="form-group">
+          <div class="col-sm-4 col-md-offset-4 inputGroupContainer">
+              <div class="input-group">
+                  <input type="text" class="form-control" id="sourceTextField" name="source" placeholder="Source"/>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-screenshot"></span>
+                  </span>
+              </div>
+          </div>
+      </div>
+      <div class="form-group">
+          <div class="col-sm-4 col-md-offset-4 inputGroupContainer">
+              <div class="input-group">
+                  <input type="text" class="form-control" name="destination" id="destinationTextField" placeholder="Destination"/>
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-screenshot"></span>
+                  </span>
+              </div>
+          </div>
+      </div>
+      <div class="col-sm-4 col-md-offset-4 inputGroupContainer">
+        <button type="submit" class="btn btn-success btn-block" id="submitbtn">Get Fares</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+

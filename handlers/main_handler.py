@@ -15,9 +15,10 @@ class MainHandler(BaseHandler):
 
     def post(self):
         if not self.request.get('data'):
-            self.render_json({error: 'data not present'})
+            self.render_json({'error': 'data not present'})
             return
 
+        import pdb; pdb.set_trace()
         data = self.request.get('data')
         # TODO(goyalankit) check if we need to handle
         # more than 1 data elements

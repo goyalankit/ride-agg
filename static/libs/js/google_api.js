@@ -1,4 +1,4 @@
-
+/* Geo autocomplete version */
 function autocomplete() {
   var defaultBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(-33.8902, 151.1759),
@@ -13,6 +13,7 @@ function autocomplete() {
     autocomplete2 = new google.maps.places.Autocomplete(dst_input, options);
 }
 
+/* Display on map */
 $(document).ready(function() {
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
@@ -29,7 +30,8 @@ function initialize() {
   directionsDisplay.setMap(map);
 }
 
-function calcRoute() {
+$calcRoute = function calcRoute() {
+  $got_result = true;
   var start = document.getElementById('sourceTextField').value;
   var end = document.getElementById('destinationTextField').value;
   var request = {
@@ -38,15 +40,16 @@ function calcRoute() {
       travelMode: google.maps.TravelMode.DRIVING,
       unitSystem: google.maps.UnitSystem.METRIC
   };
+  $got_result = false;
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
 response.routes[0].legs[0].distance
+      makeRequestForFares(response);
       directionsDisplay.setDirections(response);
-      $r_response = response;
+      //$r_response = response;
     }
   });
 
-  makeRequestForFares($r_response);
 }
 
 function makeRequestForFares(gmap_response) {
@@ -65,28 +68,4 @@ function makeRequestForFares(gmap_response) {
 
 google.maps.event.addDomListener(window, 'load', initialize);
 
-$("#submitbtn")
-  .on('click', function(e) {
-    // Prevent form submission
-    e.preventDefault();
-
-    // Get the form instance
-    var $form = $(e.target);
-    calcRoute();
-
-    $(".wide").animate({
-        height: '50px'
-    }, 1000);
-
-//  $( ".inputGroupContainer" ).removeClass("col-md-offset-4", 1000)
-
-    // Use Ajax to submit form data
-
-/*
-    $.post($form.attr('action'), $form.serialize(), function(result) {
-     // ... Process the result ...
-    }, 'json');
-*/
-
-  });
 });
