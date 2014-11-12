@@ -1,4 +1,4 @@
-gae-boilterplate
+Ride Aggregator App
 ================
 
 ### Api to get distance between two points and their latitude and longtude.
