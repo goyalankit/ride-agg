@@ -15,7 +15,7 @@ def main(sdk_path, test_path):
     sys.path.insert(0, sdk_path)
     sys.path.insert(0, test_path)
     sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-    if os.environ.get('TRAVIS') == None:
+    if os.environ.get('TRAVIS') == "true":
         sys.path.append(os.path.join(os.path.dirname(__file__), './google_appengine'))
     import dev_appserver
     dev_appserver.fix_sys_path()
