@@ -26,7 +26,7 @@ class BaseService:
         return
 
     @abc.abstractmethod
-    def get_fare_by_distance(self, distance):
+    def get_fare_by_distance(self, route):
         """Returns fare if the total distance
         is given between source and destination
         """
