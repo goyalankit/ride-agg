@@ -26,7 +26,7 @@ def main(sdk_path, test_path):
 if __name__ == '__main__':
     parser = optparse.OptionParser(USAGE)
     options, args = parser.parse_args()
-    if os.environ.get('TRAVIS') == None:
+    if not os.environ.get('TRAVIS'):
         SDK_PATH = "/usr/local/google_appengine"
     else:
         SDK_PATH = "./google_appengine"

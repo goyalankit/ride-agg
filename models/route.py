@@ -9,5 +9,9 @@ class Route:
         self.end_address = data['end_address']
         self.duration = data['duration']['value']
 
+    def __init__(self):
+        pass
 
-
+    def json2Obj(self, route):
+        for key in route:
+            setattr(self, key, route.get(key))

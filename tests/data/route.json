@@ -1,0 +1,15 @@
+{
+    "duration": 1690,
+    "end_location": {
+        "lon": 72.956861,
+        "lat": 19.1717358
+    },
+    "end_address": "Mulund Railway Station, Lokmanya Tilak Road, Hanuman Chowk, Mulund East, Mumbai, Maharashtra 400081, India",
+    "distance_text": "17.4 km",
+    "distance": 17385,
+    "start_location": {
+        "lon": 72.87393799999995,
+        "lat": 19.1031529
+    },
+    "start_address": "Chhatrapati Shivaji International Airport (BOM), Mumbai, Maharashtra 400099, India"
+}

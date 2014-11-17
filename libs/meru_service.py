@@ -21,6 +21,17 @@ class MeruService(BaseService):
         return meru_config.get('data_file')
 
     """
+    Try to match a city from available cities in meru data in the source
+    address.
+    """
+    def find_city(self, mdata, route):
+        meru_cities = mdata.keys()
+        start_address = route.start_address.lower()
+
+        city = [city for city in meru_cities if city in start_address]
+        return (city[0] if city else None)
+
+    """
     File path can be obtained from config. However it is also provided as an
     argument to facilitate testing. Since get_app is not available in unittests or
     maybe there's a better way of doing it.
@@ -53,6 +64,8 @@ class MeruService(BaseService):
     """
     def get_fare_by_distance(self, route):
         mdata = self.load_data().get('meru')
+        self.find_city(mdata, route)
+
 
     """
     This is a method reserved for future use. Just in case we want to pass
