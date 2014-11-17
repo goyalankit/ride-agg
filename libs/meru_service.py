@@ -2,6 +2,7 @@ import json
 import urllib
 import webapp2
 import yaml
+import config
 from base_service import BaseService
 from google.appengine.api import urlfetch
 
@@ -16,7 +17,7 @@ class MeruService(BaseService):
         return False
 
     def get_path(self):
-        meru_config = config.get_app().config.get('meru')
+        meru_config = config.app_config.get('meru')
         return meru_config.get('data_file')
 
     """
@@ -52,7 +53,6 @@ class MeruService(BaseService):
     """
     def get_fare_by_distance(self, route):
         mdata = self.load_data().get('meru')
-        import pdb; pdb.set_trace()
 
     """
     This is a method reserved for future use. Just in case we want to pass

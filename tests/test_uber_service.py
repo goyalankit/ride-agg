@@ -16,3 +16,4 @@ class TestUberService(unittest.TestCase):
     def test_calculate_distance(self):
         dst = self.uber.calculate_distance(30.299353, -97.720759, 30.283679, -97.732582)
         self.assertEqual(abs(2.07995170808 - dst) < 0.5, True)
+

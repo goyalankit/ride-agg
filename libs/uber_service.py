@@ -2,6 +2,7 @@ import json
 import urllib
 import webapp2
 import math
+import config
 from base_service import BaseService
 from google.appengine.api import urlfetch
 
@@ -17,9 +18,9 @@ class UberService(BaseService):
     """
     # TODO(goyalankit) add error handling code
     def make_request(self, url_type, parameters):
-        config = webapp2.get_app().config.get('uber')
-        parameters.update({ 'server_token': config.get('server_token')})
-        url_with_params = config.get(url_type) + '?' + urllib.urlencode(parameters)
+        uber_config = config.app_config.get('uber')
+        parameters.update({ 'server_token': uber_config.get('server_token')})
+        url_with_params = uber_config.get(url_type) + '?' + urllib.urlencode(parameters)
         response = urlfetch.fetch(url_with_params, method=urlfetch.GET)
         json_response = json.loads(response.content)
         return response.status_code, json_response
