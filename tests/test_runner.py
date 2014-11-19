@@ -20,7 +20,9 @@ def main(sdk_path, test_path):
     import dev_appserver
     dev_appserver.fix_sys_path()
     suite = unittest.loader.TestLoader().discover(test_path)
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    result = unittest.TextTestRunner(verbosity=2).run(suite)
+    if (len(result.errors) > 0):
+        exit(1)
 
 
 if __name__ == '__main__':
