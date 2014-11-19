@@ -1,0 +1,22 @@
+# A template for database style entries of fare info.
+# Used for deriving fare information when an API is not available.
+
+# field descriptions
+# - fixed_fare, fixed_fare_km
+#   Fixed fare for first 'fixed_fare_km' kilometers
+# - fare_per_km
+#   Fare per km after fixed rate distance is surpassed
+# - time_from, time_to
+#   Daily time during which this service is active
+
+fare_per_km: true
+fixed_fare: true
+fixed_fare_km: false
+wait_charge_per_min: true
+city: true
+currency_code: true
+service_type: false
+vehicle_type: false
+service_tax: false
+time_from: false
+time_to: false
