@@ -56,16 +56,24 @@ class MeruService(BaseService):
         return result
 
 
+    """
+    Get the rule for given time from the set of rules available
+    for meru.
+    Input: rules for a service type in a given service
+    Example:  rules = (meru -> mumbai -> service_type -> meru_cabs)
+    """
     def get_rule_for_given_time(self, rules, time):
         midnight = datetime.strptime('00:00', '%H:%M')
+        selected_rule = None
         for rule_index in rules:
             rule = rules.get(rule_index)
-            import pdb; pdb.set_trace()
             time_from   = datetime.strptime(rule.get('time_from'), '%H:%M')
             time_to     = datetime.strptime(rule.get('time_to'), '%H:%M')
-            travel_time = datetime.strptime(datetime.strptime(time, '%H:%M'))
-        datetime.strptime('', '%H:%M').time()
-
+            travel_time = datetime.strptime(datetime.now().strftime("%H:%M"), '%H:%M')
+            if (travel_time > time_from and travel_time < time_to):
+                selected_rule = rule
+                break
+        return selected_rule
 
     def calculate_fare(self, rules, distance, time=datetime.now()):
         self.get_rule_for_given_time(rules, time)

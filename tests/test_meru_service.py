@@ -47,9 +47,14 @@ class TestMeruService(unittest.TestCase):
         city_n_p = self.meru.find_city(self.meru.load_data().get('meru'), route_temp)
         self.assertEqual(None, city_n_p)
 
+    def test_rule_for_given_time(self):
+        data = self.meru.load_data()
+        #s_rule = self.meru.get_rule_for_given_time(self, data['meru']['mumbai']['service_type'])
+
     def test_get_fare_by_distance(self):
         """Checks that the fare is calculated correctly"""
-        #self.meru._get_fare_by_distance(self.route)
+        #s_rule = self.meru._get_fare_by_distance(self.route)
+        pass
 
 
 

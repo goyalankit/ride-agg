@@ -1,46 +1,47 @@
 meru:
   mumbai:
     service_type:
-      "Meru Cabs":
-        1:
-          fare_per_km: 20.0
-          fare_fixed_for_km: 1
-          fixed_fare: 27
-          waiting_charges: 2.0
-          service_tax: 4.94
-          city: "mumbai"
-          time_from: "05:00"
-          time_to: "00:00"
-          currency: "rs"
-        2:
-          fare_per_km: 25.0
-          fare_fixed_for_km: 1
-          fixed_fare: 33.75
-          waiting_charges: 2.5
-          service_tax: 4.94
-          city: "mumbai"
-          time_from: "0:00"
-          time_to: "05:00"
-          currency: "rs"
-    service_type:
-      "Meru Flexi":
-        1:
-          fare_per_km: 23.0
-          fare_fixed_for_km: 8
-          fixed_fare: 200
-          waiting_charges: 2.50
-          service_tax: 4.94
-          city: "mumbai"
-          time_from: "05:00"
-          time_to: "00:00"
-          currency: "rs"
-        2:
-          fare_per_km: 23.0
-          fare_fixed_for_km: 8
-          fixed_fare: 200
-          waiting_charges: 2.50
-          service_tax: 4.94
-          city: "mumbai"
-          time_from: "05:00"
-          time_to: "mid-night"
-          currency: "rs"
+      -
+        "Meru Cabs":
+          1:
+            fare_per_km: 20.0
+            fare_fixed_for_km: 1
+            fixed_fare: 27
+            waiting_charges: 2.0
+            service_tax: 4.94
+            city: "mumbai"
+            time_from: "05:00"
+            time_to: "23:59"
+            currency: "rs"
+          2:
+            fare_per_km: 25.0
+            fare_fixed_for_km: 1
+            fixed_fare: 33.75
+            waiting_charges: 2.5
+            service_tax: 4.94
+            city: "mumbai"
+            time_from: "0:00"
+            time_to: "05:00"
+            currency: "rs"
+      -
+        "Meru Flexi":
+          1:
+            fare_per_km: 23.0
+            fare_fixed_for_km: 8
+            fixed_fare: 200
+            waiting_charges: 2.50
+            service_tax: 4.94
+            city: "mumbai"
+            time_from: "05:00"
+            time_to: "23:59"
+            currency: "rs"
+          2:
+            fare_per_km: 23.0
+            fare_fixed_for_km: 8
+            fixed_fare: 200
+            waiting_charges: 2.50
+            service_tax: 4.94
+            city: "mumbai"
+            time_from: "05:00"
+            time_to: "00:00"
+            currency: "rs"
