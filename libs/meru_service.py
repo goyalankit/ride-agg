@@ -98,7 +98,11 @@ class MeruService(BaseService):
         for service_type in service_rules_for_city:
             self.calculate_fare(service_rules_for_city.get(service_type),
                     distance_in_meters)
+        #TODO(goyalankit) finish this method
+        return {}
 
+    def get_fare(self, route):
+        return self._get_fare_by_distance(self, route)
 
     """
     This is a method reserved for future use. Just in case we want to pass
