@@ -33,7 +33,7 @@ class UberService(BaseService):
     def has_api(self):
         return True
 
-    def get_fare_by_lat_lang(self, src_lat, src_long,
+    def _get_fare_by_lat_lang(self, src_lat, src_long,
             dst_lat, dst_long):
         params = {
                 'start_latitude': src_lat,
@@ -45,8 +45,15 @@ class UberService(BaseService):
         status, result = self.make_request("price_url", params)
         return result
 
-    def get_fare_by_distance(self, distance):
+    def _get_fare_by_distance(self, distance):
         raise NotImplementedError("Method not supported by this service")
+
+    def get_fare(self, route):
+        s_l = route.start_location
+        e_l = route.end_location
+        result = self._get_fare_by_lat_lang(s_l['lat'], s_l['lon'],
+                e_l['lat'], e_l['lon'])
+        return result
 
     """
     This is a method reserved for future use. Just in case we want to pass

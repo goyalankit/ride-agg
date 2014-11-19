@@ -17,10 +17,7 @@ class FareTeller:
             s_l = self.route.start_location
             e_l = self.route.end_location
             service_obj = service()
-            if service_obj.has_api:
-                fares[service_obj.name] = service_obj.get_fare_by_lat_lang(
-                        s_l['lat'], s_l['lon'], e_l['lat'], e_l['lon'])
-
+            fares[service_obj.name] = service_obj.get_fare(self.route)
         return fares
 
 

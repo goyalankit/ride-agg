@@ -3,6 +3,7 @@ import urllib
 import webapp2
 import yaml
 import config
+from datetime import datetime
 from base_service import BaseService
 from google.appengine.api import urlfetch
 
@@ -21,17 +22,6 @@ class MeruService(BaseService):
         return meru_config.get('data_file')
 
     """
-    Try to match a city from available cities in meru data in the source
-    address.
-    """
-    def find_city(self, mdata, route):
-        meru_cities = mdata.keys()
-        start_address = route.start_address.lower()
-
-        city = [city for city in meru_cities if city in start_address]
-        return (city[0] if city else None)
-
-    """
     File path can be obtained from config. However it is also provided as an
     argument to facilitate testing. Since get_app is not available in unittests or
     maybe there's a better way of doing it.
@@ -47,12 +37,27 @@ class MeruService(BaseService):
 
     Only use this method if you have no other option
     """
-    def get_fare_by_lat_lang(self, src_lat, src_long,
+    def _get_fare_by_lat_lang(self, src_lat, src_long,
             dst_lat, dst_long):
         approx_distance = self.calculate_distance(src_lat, src_long,
                 dst_lat, dst_long)
         result = get_fare_by_distance(approx_distance)
         return result
+
+
+    def get_rule_for_given_time(self, rules, time):
+        midnight = datetime.strptime('00:00', '%H:%M')
+        for rule_index in rules:
+            rule = rules.get(rule_index)
+            import pdb; pdb.set_trace()
+            time_from   = datetime.strptime(rule.get('time_from'), '%H:%M')
+            time_to     = datetime.strptime(rule.get('time_to'), '%H:%M')
+            travel_time = datetime.strptime(datetime.strptime(time, '%H:%M'))
+        datetime.strptime('', '%H:%M').time()
+
+
+    def calculate_fare(self, rules, distance, time=datetime.now()):
+        self.get_rule_for_given_time(rules, time)
 
     """
     Returns fare for various service types/vehicle types based on distance
@@ -62,9 +67,18 @@ class MeruService(BaseService):
 
     We pass Route object since we need city and distance information
     """
-    def get_fare_by_distance(self, route):
+    def _get_fare_by_distance(self, route):
         mdata = self.load_data().get('meru')
-        self.find_city(mdata, route)
+        city  = self.find_city(mdata, route)
+        if not city:
+            return {}
+
+        service_rules_for_city = mdata.get(city).get('service_type')
+        distance_in_meters = route.distance
+
+        for service_type in service_rules_for_city:
+            self.calculate_fare(service_rules_for_city.get(service_type),
+                    distance_in_meters)
 
 
     """

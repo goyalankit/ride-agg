@@ -19,16 +19,27 @@ class BaseService:
         """
         return
 
-    @abc.abstractmethod
-    def get_fare_by_lat_lang(self, src_lat, src_long, dst_lat, dst_long):
-        """Returns fare if latitude and longitude of
-        source and destination are given."""
+    def get_fare(self, route):
+        """
+        Method used to get fare information for a given service.
+        This method internally calls private methods _get_fare_by_distance
+        or _get_fare_by_lat_long based on implementation.
+        """
         return
 
     @abc.abstractmethod
-    def get_fare_by_distance(self, route):
+    def _get_fare_by_lat_lang(self, src_lat, src_long, dst_lat, dst_long):
+        """Returns fare if latitude and longitude of
+        source and destination are given.
+        This is a private method called by get_fare
+        """
+        return
+
+    @abc.abstractmethod
+    def _get_fare_by_distance(self, route):
         """Returns fare if the total distance
         is given between source and destination
+        This is a private method called by get_fare
         """
         return
 
@@ -45,6 +56,18 @@ class BaseService:
         Otherwise return -1
         """
         return
+
+    """
+    Try to match a city from available cities in meru data in the source
+    address.
+    """
+    def find_city(self, mdata, route):
+        meru_cities = mdata.keys()
+        start_address = route.start_address.lower()
+
+        city = [city for city in meru_cities if city in start_address]
+        return (city[0] if city else None)
+
 
     def calculate_distance(self, src_lat, src_long, dst_lat, dst_long):
         """Method to calculate Distance between two sets of Lat/Lon."""
