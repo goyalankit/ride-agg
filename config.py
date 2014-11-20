@@ -13,5 +13,8 @@ app_config = {
         'meru' : {
             'data_file' : os.path.abspath('data/meru.yaml')
             },
+        'olacabs' : {
+            'data_file' : os.path.abspath("data/olacabs.yaml")
+            },
         'debug': True 
         }

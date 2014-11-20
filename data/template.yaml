@@ -2,19 +2,25 @@
 # Used for deriving fare information when an API is not available.
 
 # field descriptions
-# - fixed_fare, fixed_fare_km
-#   Fixed fare for first 'fixed_fare_km' kilometers
-# - fare_per_km
-#   Fare per km after fixed rate distance is surpassed
+# - fixed_fare_per_km/_per_min, fixed_fare_dist/_time
+#   Fixed fare for first 'fixed_fare_dist/_time' kilometers/minutes
+# - fare_per_km/fare_per_min
+#   Fare per km after fixed rate distance/time (if present) is surpassed
 # - time_from, time_to
 #   Daily time during which this service is active
 
+# boolean flag denotes which fields are required
+# required fields
 fare_per_km: true
-fixed_fare: true
-fixed_fare_km: false
-wait_charge_per_min: true
 city: true
 currency_code: true
+
+# optional fields
+fare_per_min: false
+fixed_fare_per_km: false
+fixed_fare_per_min: false
+fixed_fare_dist_km: false
+wait_charge_per_min: false
 service_type: false
 vehicle_type: false
 service_tax: false
