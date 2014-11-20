@@ -1,350 +1,350 @@
 - city: !!python/unicode 'Mumbai'
-  currency: rs
-  fare_per_km: '21'
-  fixed_fare: '150'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 21.0
+  fixed_fare_per_km: 150.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Mumbai'
-  currency: rs
-  fare_per_km: '21'
-  fixed_fare: '150'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 21.0
+  fixed_fare_per_km: 150.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Delhi'
-  currency: rs
-  fare_per_km: '18'
-  fixed_fare: '200'
-  fixed_fare_km: '8'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 18.0
+  fixed_fare_dist_km: 8.0
+  fixed_fare_per_km: 200.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Delhi'
-  currency: rs
-  fare_per_km: '18'
-  fixed_fare: '200'
-  fixed_fare_km: '8'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 18.0
+  fixed_fare_dist_km: 8.0
+  fixed_fare_per_km: 200.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Bangalore'
-  currency: rs
-  fare_per_km: '13'
-  fixed_fare: '150'
-  fixed_fare_km: '8'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 13.0
+  fixed_fare_dist_km: 8.0
+  fixed_fare_per_km: 150.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Bangalore'
-  currency: rs
-  fare_per_km: '13'
-  fixed_fare: '150'
-  fixed_fare_km: '8'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 13.0
+  fixed_fare_dist_km: 8.0
+  fixed_fare_per_km: 150.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Pune'
-  currency: rs
-  fare_per_km: '12'
-  fixed_fare: '100'
-  fixed_fare_km: '5'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 12.0
+  fixed_fare_dist_km: 5.0
+  fixed_fare_per_km: 100.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Mini'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Pune'
-  currency: rs
-  fare_per_km: '12'
-  fixed_fare: '100'
-  fixed_fare_km: '5'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 12.0
+  fixed_fare_dist_km: 5.0
+  fixed_fare_per_km: 100.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Mini'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Chennai'
-  currency: rs
-  fare_per_km: '16'
-  fixed_fare: '150'
-  fixed_fare_km: '6'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 16.0
+  fixed_fare_dist_km: 6.0
+  fixed_fare_per_km: 150.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Chennai'
-  currency: rs
-  fare_per_km: '16'
-  fixed_fare: '150'
-  fixed_fare_km: '6'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 16.0
+  fixed_fare_dist_km: 6.0
+  fixed_fare_per_km: 150.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Goa'
-  currency: rs
-  fare_per_km: '15'
-  fixed_fare: '250'
-  fixed_fare_km: '6'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 15.0
+  fare_per_min: 2.0
+  fixed_fare_dist_km: 6.0
+  fixed_fare_per_km: 250.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
 - city: !!python/unicode 'Goa'
-  currency: rs
-  fare_per_km: '15'
-  fixed_fare: '250'
-  fixed_fare_km: '6'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 15.0
+  fare_per_min: 2.0
+  fixed_fare_dist_km: 6.0
+  fixed_fare_per_km: 250.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
 - city: !!python/unicode 'Jaipur'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '5'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 5.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Jaipur'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '5'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 5.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Hyderabad'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '150'
-  fixed_fare_km: '6'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 6.0
+  fixed_fare_per_km: 150.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Hyderabad'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '150'
-  fixed_fare_km: '6'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 6.0
+  fixed_fare_per_km: 150.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Chandigarh'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '5'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 5.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Chandigarh'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '5'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 5.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Ahmedabad'
-  currency: rs
-  fare_per_km: '12'
-  fixed_fare: '100'
-  fixed_fare_km: '4'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 12.0
+  fixed_fare_dist_km: 4.0
+  fixed_fare_per_km: 100.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Ahmedabad'
-  currency: rs
-  fare_per_km: '12'
-  fixed_fare: '100'
-  fixed_fare_km: '4'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 12.0
+  fixed_fare_dist_km: 4.0
+  fixed_fare_per_km: 100.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Surat'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '4'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 4.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Surat'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '4'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 4.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Indore'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Indore'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Lucknow'
-  currency: rs
-  fare_per_km: '13'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 13.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Lucknow'
-  currency: rs
-  fare_per_km: '13'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 13.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Amritsar'
-  currency: rs
-  fare_per_km: '15'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 15.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Amritsar'
-  currency: rs
-  fare_per_km: '15'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 15.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Ludhiana'
-  currency: rs
-  fare_per_km: '15'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 15.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Ludhiana'
-  currency: rs
-  fare_per_km: '15'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 15.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Visakhapatnam'
-  currency: rs
-  fare_per_km: '16'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 16.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Visakhapatnam'
-  currency: rs
-  fare_per_km: '16'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 16.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Coimbatore'
-  currency: rs
-  fare_per_km: '16'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 16.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Coimbatore'
-  currency: rs
-  fare_per_km: '16'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 16.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Nagpur'
-  currency: rs
-  fare_per_km: '12'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 12.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Mini'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Nagpur'
-  currency: rs
-  fare_per_km: '12'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 12.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Mini'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Nashik'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '5'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 5.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Nashik'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '5'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 5.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Vadodara'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '5'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 5.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Vadodara'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '5'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 5.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Kolkata'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '4'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 4.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '1'
+  wait_charge_per_min: 1.0
 - city: !!python/unicode 'Kolkata'
-  currency: rs
-  fare_per_km: '14'
-  fixed_fare: '99'
-  fixed_fare_km: '4'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 14.0
+  fixed_fare_dist_km: 4.0
+  fixed_fare_per_km: 99.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Sedan'
-  wait_charge_per_min: '1'
+  wait_charge_per_min: 1.0
 - city: !!python/unicode 'Aurangabad'
-  currency: rs
-  fare_per_km: '12'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: standard
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 12.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Standard'
   vehicle_type: !!python/unicode 'Mini'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
 - city: !!python/unicode 'Aurangabad'
-  currency: rs
-  fare_per_km: '12'
-  fixed_fare: '49'
-  fixed_fare_km: '2'
-  service_type: luxury
+  currency_code: !!python/unicode 'IND'
+  fare_per_km: 12.0
+  fixed_fare_dist_km: 2.0
+  fixed_fare_per_km: 49.0
+  service_type: !!python/unicode 'Luxury'
   vehicle_type: !!python/unicode 'Mini'
-  wait_charge_per_min: '2'
+  wait_charge_per_min: 2.0
