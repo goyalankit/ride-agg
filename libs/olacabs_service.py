@@ -1,4 +1,4 @@
-import config
+# import config
 import os
 import json
 import urllib
@@ -17,7 +17,8 @@ class OlacabsService(BaseService):
         return False
 
     def get_data(self):
-        with open(config.app_config.get(self.name)['data_file']) as df:
+        with open(os.path.join('../data', self.name+'.yaml'),'r') as df:
+        # with open(config.app_config.get(self.name)['data_file'],'r') as df:
             data = yaml.load(df)
         return data
 
@@ -39,7 +40,7 @@ class OlacabsService(BaseService):
             fare = 0
             distance = route.distance # assuming kilometers
             fare_rate = svc['fare_per_km']
-            
+
             if 'fixed_fare_dist_km' in svc:
                 fixed_fare_dist = min(distance, svc['fixed_fare_dist_km'])
                 fare += fixed_fare_dist*svc['fixed_fare_per_km']

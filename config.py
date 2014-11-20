@@ -16,5 +16,8 @@ app_config = {
         'olacabs' : {
             'data_file' : os.path.abspath("data/olacabs.yaml")
             },
+        'template' : {
+            'data_file' : os.path.abspath('data/template.yaml')
+            },
         'debug': True 
         }
