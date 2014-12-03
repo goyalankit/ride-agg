@@ -118,5 +118,43 @@
   service_tax: 4.94
   time_from: "23:00"
   time_to: "05:00"
-
-
+- city: "Hyderabad"
+  currency_code: 'IND'
+  service_type: 'Meru Cabs'
+  fare_per_km_after_fixed: 21.00
+  fixed_fare: 40
+  dist_km_for_fixed_fare: 2
+  service_tax: 4.94
+  time_from: "05:00"
+  time_to: "23:00"
+  info: "No charge for the first 10 mins Rs 1 / min thereafter"
+- city: "Hyderabad"
+  currency_code: 'IND'
+  service_type: 'Meru Cabs'
+  fare_per_km_after_fixed: 26.25
+  fixed_fare: 50.00
+  dist_km_for_fixed_fare: 2
+  service_tax: 4.94
+  time_from: "23:00"
+  time_to: "05:00"
+  info: "No charge for the first 10 mins Rs 1.25 / min thereafter"
+- city: "Hyderabad"
+  currency_code: 'IND'
+  service_type: 'Meru Flexi'
+  fare_per_km_after_fixed: 21.00
+  fixed_fare: 40
+  dist_km_for_fixed_fare: 2
+  service_tax: 4.94
+  time_from: "05:00"
+  time_to: "24:00"
+  info: "No charge for the first 10 mins Rs 1 / min thereafter"
+- city: "Hyderabad"
+  currency_code: 'IND'
+  service_type: 'Meru Flexi'
+  fare_per_km_after_fixed: 26.25
+  fixed_fare: 50.00
+  dist_km_for_fixed_fare: 2
+  service_tax: 4.94
+  time_from: "24:00"
+  time_to: "05:00"
+  info: "No charge for the first 10 mins Rs 1.25 / min thereafter"
