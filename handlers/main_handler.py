@@ -24,7 +24,8 @@ class MainHandler(BaseHandler):
         first_data  = json.loads(data)[0]
         route       = Route(first_data)
         fare_teller = FareTeller(route)
-        fare_teller.get_fares()
+        fares = fare_teller.get_fares()
+        self.render_json({'fares' : fares})
 
 class IndexHandler(BaseHandler):
     def get(self):

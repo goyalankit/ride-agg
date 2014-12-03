@@ -187,7 +187,7 @@ class MeruService(BaseService):
         return fare
 
     def get_fare(self, route):
-        return self._get_fare_by_distance(self, route)
+        return self._get_fare_by_distance(route)
 
     """
     This is a method reserved for future use. Just in case we want to pass

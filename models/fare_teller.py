@@ -1,11 +1,13 @@
 from libs.uber_service import UberService
+from libs.meru_service import MeruService
 
 class FareTeller:
 
     # all these services will be used to
     # fetch results
     services = [
-            UberService
+            UberService,
+            MeruService
         ]
 
     def __init__(self, _route):
