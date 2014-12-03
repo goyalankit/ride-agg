@@ -54,6 +54,11 @@ class MeruService(BaseService):
         return result
 
 
+    """
+    This method returns the rule based on time of travel.
+    if the time of travel coincides with the boundary of fare intervals
+    we simply add 5 minutes delay to avoid any weird results.
+    """
     def get_rule_for_given_time(self, rules, time):
         selected_rule = None
         for rule in rules:
@@ -93,6 +98,12 @@ class MeruService(BaseService):
 
         return start_rule, end_rule
 
+    """
+    This method calculates fare based on the given rule.
+    Algorithm:
+    1. Apply the fix fare for given number of kms
+    2. Apply the rs/km to the remaining distance in kms
+    """
     def __calculate_fare_per_rule(self, rule, distance):
         fare = 0
         dist_in_km = distance / 1000.0
@@ -107,6 +118,10 @@ class MeruService(BaseService):
         return fare
 
 
+    """
+    This private method, updates the extra info with waiting charges,
+    boolean showing if night charges were applied.
+    """
     def __update_fare_related_info(self, s_rule, s_fare, e_rule, e_fare):
         # wauting charges if present otherwise set to None
         if (s_fare >= e_fare):
@@ -129,11 +144,18 @@ class MeruService(BaseService):
         elif s_fare < e_fare and e_rule.get('info', False):
             self.info['other_info'] = e_rule['info']
         elif s_rule.get('info', False):
-            self.info['other_info']  = s_rule['info']
+            self.info['other_info'] = s_rule['info']
         elif e_rule.get('info', False):
-            self.info['other_info']  = e_rule['info']
+            self.info['other_info'] = e_rule['info']
 
-
+    """
+    Helper method to get fares for both the start time rule and end time
+    rule.
+    Start and End time may overlap with two different intervals of fares.
+    We calculate for both the intervals and then show the higher of the two
+    intervals.
+    This method also calls the method to update extra information
+    """
     def _calculate_fare(self, rules, distance, duration, time=datetime.now()):
         s_rule, e_rule = self.get_rules_for_trip(rules, time, duration)
         if (not s_rule) or (not e_rule):
@@ -158,13 +180,9 @@ class MeruService(BaseService):
     def _get_fare_by_distance(self, route):
         mdata = self.load_data()
         city  = hf.find_city(mdata, route)
-
-        if not city:
-            return {}
-
+        if not city: return {}
         distance_in_meters     = route.distance
         duration               = route.duration
-
         fare = self._calculate_fare(mdata, distance_in_meters, duration)
         return fare
 
