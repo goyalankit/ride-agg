@@ -78,5 +78,45 @@
   service_tax: 4.94
   time_from: "0:00"
   time_to: "06:00"
+- city: "Delhi"
+  currency_code: 'IND'
+  service_type: 'Meru Cabs'
+  fare_per_km_after_fixed: 23:00
+  fixed_fare: 69
+  dist_km_for_fixed_fare: 3
+  service_tax: 4.94
+  time_from: "5:00"
+  time_to: "23:00"
+  info: "No charge for the first 15 minutes and thereafter Rs. 30/- per hour or part thereof."
+- city: "Delhi"
+  currency_code: 'IND'
+  service_type: 'Meru Cabs'
+  fare_per_km_after_fixed: 28.75
+  fixed_fare: 86.25
+  dist_km_for_fixed_fare: 3
+  service_tax: 4.94
+  time_from: "23:00"
+  time_to: "05:00"
+  info: "No charge for the first 15 minutes and thereafter Rs. 37.50/- per hour or part thereof."
+- city: "Delhi"
+  currency_code: 'IND'
+  service_type: 'Meru Flexi'
+  wait_charge_per_min: 2.20
+  fare_per_km_after_fixed: 23.00
+  fixed_fare: 200.00
+  dist_km_for_fixed_fare: 8
+  service_tax: 4.94
+  time_from: "05:00"
+  time_to: "23:00"
+- city: "Delhi"
+  currency_code: 'IND'
+  service_type: 'Meru Flexi'
+  wait_charge_per_min: 2.20
+  fare_per_km_after_fixed: 23.00
+  fixed_fare: 200.00
+  dist_km_for_fixed_fare: 8
+  service_tax: 4.94
+  time_from: "23:00"
+  time_to: "05:00"
 
 
