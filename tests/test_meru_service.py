@@ -1,10 +1,11 @@
 import unittest
 import webapp2
-import os
 import json
+import os
 from google.appengine.api import memcache
-from google.appengine.ext import db
 from google.appengine.ext import testbed
+from google.appengine.ext import db
+from datetime import datetime
 
 from libs.meru_service import MeruService
 from models.route import Route
@@ -43,9 +44,40 @@ class TestMeruService(unittest.TestCase):
         city_n_p = helper_functions.find_city(self.meru.load_data(), route_temp)
         self.assertEqual(None, city_n_p)
 
+    """
+    Test for night time
+    """
     def test_rule_for_given_time(self):
-        data = self.meru.load_data()
-#        s_rule = self.meru.get_rule_for_given_time(self, data['meru']['mumbai']['service_type'])
+        rules = [
+                    {'rule' : 1, 'time_from' : '23:00', 'time_to' : '05:00'},
+                    {'rule' : 2, 'time_from' : '05:00', 'time_to' : '23:00'},
+                ]
+
+        # greater than all bounds
+        time_to_check = datetime.strptime("23:50", '%H:%M')
+        s_rule = self.meru.get_rule_for_given_time(rules, time_to_check)
+        self.assertEqual(s_rule, rules[0])
+
+        # between the bound of day time
+        time_to_check = datetime.strptime("05:50", '%H:%M')
+        s_rule = self.meru.get_rule_for_given_time(rules, time_to_check)
+        self.assertEqual(s_rule, rules[1])
+
+        # smaller than all the bounds
+        time_to_check = datetime.strptime("03:00", '%H:%M')
+        s_rule = self.meru.get_rule_for_given_time(rules, time_to_check)
+        self.assertEqual(s_rule, rules[0])
+
+    def test_rule_for_given_time_for_day(self):
+        rules = [
+                    {'rule' : 1, 'time_from' : '23:59', 'time_to' : '05:00'},
+                    {'rule' : 2, 'time_from' : '05:00', 'time_to' : '23:59'},
+                ]
+        time_to_check = datetime.strptime("00:00", '%H:%M')
+        s_rule = self.meru.get_rule_for_given_time(rules, time_to_check)
+        self.assertEqual(s_rule, rules[0])
+
+
 
     def test_get_fare_by_distance(self):
         """Checks that the fare is calculated correctly"""

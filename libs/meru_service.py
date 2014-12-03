@@ -58,17 +58,27 @@ class MeruService(BaseService):
     def get_rule_for_given_time(self, rules, time):
         midnight = datetime.strptime('00:00', '%H:%M')
         selected_rule = None
-        for rule_index in rules:
-            rule = rules.get(rule_index)
+        for rule in rules:
+            #rule = rules.get(rule_index)
             time_from   = datetime.strptime(rule.get('time_from'), '%H:%M')
             time_to     = datetime.strptime(rule.get('time_to'), '%H:%M')
-            travel_time = datetime.strptime(datetime.now().strftime("%H:%M"), '%H:%M')
+            travel_time = datetime.strptime(time.strftime("%H:%M"), '%H:%M')
             if (travel_time > time_from and travel_time < time_to):
                 selected_rule = rule
                 break
+            elif (travel_time > time_from and travel_time > time_to):
+                if ((travel_time - time_from).seconds // 3600 < 12):
+                    selected_rule = rule
+                    break
+            elif (travel_time < time_from and travel_time < time_to):
+                if ( (time_to - travel_time).seconds // 3600 < 12):
+                    selected_rule = rule
+                    break
+
         return selected_rule
 
-    def calculate_fare(self, rules, distance, time=datetime.now()):
+    def calculate_fare(self, rules, distance, duration, time=datetime.now()):
+        time_charged_for = time + datetime.timedelta(seconds=duration)
         self.get_rule_for_given_time(rules, time)
 
     """
@@ -86,11 +96,12 @@ class MeruService(BaseService):
             return {}
 
         service_rules_for_city = mdata.get(city).get('service_type')
-        distance_in_meters = route.distance
+        distance_in_meters     = route.distance
+        dutation               = route.dutation
 
         for service_type in service_rules_for_city:
             self.calculate_fare(service_rules_for_city.get(service_type),
-                    distance_in_meters)
+                    distance_in_meters, duration)
         #TODO(goyalankit) finish this method
         return {}
 

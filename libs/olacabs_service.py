@@ -28,7 +28,7 @@ class OlacabsService(BaseService):
         f = lambda s: ((city == s['city'].lower())
                        and (('time_from' not in s)
                             or (s['time_from'] <= time <= s['time_to'])))
-        
+
         return filter(f, self.get_data())
 
     # TODO

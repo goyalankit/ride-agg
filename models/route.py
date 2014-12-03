@@ -9,6 +9,7 @@ class Route:
             self.start_address = data['start_address']
             self.end_address = data['end_address']
             self.duration = data['duration']['value']
+            self.duration_text = data['duration']['text']
 
     def json2Obj(self, route):
         for key in route:
