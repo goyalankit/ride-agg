@@ -22,6 +22,6 @@ class TestHelperFunctions(unittest.TestCase):
 
     def test_find_city_when_present(self):
         """Returns the city when present in cities from meru data"""
-        city = helper_functions.find_city([{'city' : 'mumbai'}], self.route)
+        city = helper_functions.find_city([{'city' : 'muMBai'}], self.route)
         self.assertEqual('mumbai', city)
 

@@ -77,12 +77,54 @@ class TestMeruService(unittest.TestCase):
         s_rule = self.meru.get_rule_for_given_time(rules, time_to_check)
         self.assertEqual(s_rule, rules[0])
 
+    def test_calculate_fare(self):
+        """Checks that the fare is calculated correctly"""
+        mdata = [
+                    {
+                      'rule'       : 1,
+                      'time_from'  : '23:59',
+                      'time_to'    : '05:00',
+                      'fixed_fare' : 20,
+                      'night'      : True,
+                      'dist_km_for_fixed_fare'  : 1,
+                      'fare_per_km_after_fixed' : 20.0,
+                      'info'       : 'some info'
 
+                    },
+                    {
+                      'rule'       : 1,
+                      'time_from'  : '05:00',
+                      'time_to'    : '23:59',
+                      'fixed_fare' : 10,
+                      'night'      : False,
+                      'dist_km_for_fixed_fare'  : 1,
+                      'fare_per_km_after_fixed' : 20.0
+                    }
+                ]
+        s_rule = self.meru._get_fare_by_distance(self.route)
+        self.route.duration = 2 * 3600 # 2 hours
+        distance = 100 * 1000 # 100KM
+        time = datetime.strptime("02:00", '%H:%M')
+        fare = self.meru._calculate_fare(mdata, distance, self.route.duration, time)
+        # 10 + 99 * 20 = 1990
+        self.assertEqual(fare, 2000)
+        info = self.meru.get_extra_information()
+        self.assertEqual(info['night_charges_used'], True)
+        self.assertEqual(info['other_info'], 'some info')
+
+        self.meru = MeruService()
+        # duration at border. but we add 5 minutes so lower one should be
+        # charged
+        time = datetime.strptime("05:00", '%H:%M')
+        fare = self.meru._calculate_fare(mdata, distance, self.route.duration, time)
+        info = self.meru.get_extra_information()
+        self.assertEqual(fare, 1990)
+        self.assertEqual(info['night_charges_used'], False)
 
     def test_get_fare_by_distance(self):
-        """Checks that the fare is calculated correctly"""
-#        s_rule = self.meru._get_fare_by_distance(self.route)
-        pass
+        """Checks that the fare is never {}. Uses real time for journey"""
+        s_rule = self.meru._get_fare_by_distance(self.route)
+        self.assertEqual(s_rule == {}, False)
 
 
 

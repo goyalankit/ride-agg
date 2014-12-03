@@ -15,7 +15,7 @@ Try to match a city from available cities in service data to the city in the sou
 address.
 """
 def find_city(mdata, route):
-    cities = [record['city'] for record in mdata]
+    cities = [record['city'].lower() for record in mdata]
     start_address = route.start_address.lower()
 
     city = [city for city in cities if city in start_address]
