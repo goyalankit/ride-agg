@@ -8,6 +8,7 @@ from google.appengine.ext import testbed
 
 from libs.meru_service import MeruService
 from models.route import Route
+import libs.helper_functions as helper_functions
 
 class TestMeruService(unittest.TestCase):
 
@@ -32,19 +33,14 @@ class TestMeruService(unittest.TestCase):
     """
     def test_load_data(self):
         data = self.meru.load_data()
-        self.assertEqual(data.get('meru') == None, False)
-        self.assertEqual(data.get('meru').get('mumbai') == None, False)
-
-    def test_find_city_when_present(self):
-        """Returns the city when present in cities from meru data"""
-        city = self.meru.find_city(self.meru.load_data().get('meru'), self.route)
-        self.assertEqual('mumbai', city)
+        self.assertEqual(data[0] is not None, True)
+        self.assertEqual(data[0]['city'] is not None, True)
 
     def test_find_city_when_not_present(self):
         """Returns None when city is not present"""
         route_temp = Route()
         route_temp.start_address = "i live in austin"
-        city_n_p = self.meru.find_city(self.meru.load_data().get('meru'), route_temp)
+        city_n_p = helper_functions.find_city(self.meru.load_data(), route_temp)
         self.assertEqual(None, city_n_p)
 
     def test_rule_for_given_time(self):
