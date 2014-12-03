@@ -10,6 +10,8 @@ import helper_functions as hf
 
 class MeruService(BaseService):
 
+    meru_data = None
+
     @property
     def name(self):
         return "Meru"
@@ -23,13 +25,14 @@ class MeruService(BaseService):
         return meru_config.get('data_file')
  
     """
-    File path can be obtained from config. However it is also provided as an
-    argument to facilitate testing. Since get_app is not available in unittests or
-    maybe there's a better way of doing it.
+    Method to load data. This only loads the data once and put it into
+    the static variable "meru_data". This method is idempotent so thread safe too.
     """
     def load_data(self):
-        stream = open(self.get_path(), 'r')
-        return yaml.load(stream)
+        if not MeruService.meru_data:
+            stream = open(self.get_path(), 'r')
+            MeruService.meru_data = yaml.load(stream)
+        return MeruService.meru_data
 
     """
     AVOID using this method. This method calls the get_fare_by_distance
@@ -77,7 +80,7 @@ class MeruService(BaseService):
     We pass Route object since we need city and distance information
     """
     def _get_fare_by_distance(self, route):
-        mdata = self.load_data().get('meru')
+        mdata = self.load_data()
         city  = hf.find_city(mdata, route)
         if not city:
             return {}

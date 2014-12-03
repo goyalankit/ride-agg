@@ -2,6 +2,9 @@
 # Generic helper functions
 #
 
+"""
+Get the unique value for a given list
+"""
 def uniq(seq):
     seen = set()
     seen_add = seen.add
