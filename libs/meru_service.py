@@ -4,8 +4,8 @@ import webapp2
 import yaml
 import config
 import math
-from datetime import datetime
-from datetime import timedelta
+import operator
+import datetime as dt
 from base_service import BaseService
 from google.appengine.api import urlfetch
 import helper_functions as hf
@@ -59,27 +59,33 @@ class MeruService(BaseService):
     if the time of travel coincides with the boundary of fare intervals
     we simply add 5 minutes delay to avoid any weird results.
     """
-    def get_rule_for_given_time(self, rules, time):
-        selected_rule = None
+    def get_rule_for_given_time(self, rules, _time):
+        selected_rules = []
         for rule in rules:
-            time_from   = datetime.strptime(rule.get('time_from'), '%H:%M')
-            time_to     = datetime.strptime(rule.get('time_to'), '%H:%M')
+            _time_from   = dt.datetime.strptime(rule.get('time_from'), '%H:%M')
+            _time_to     = dt.datetime.strptime(rule.get('time_to'), '%H:%M')
             # add 5 minutes if we are on boundary
+            time_from = _time_from.time()
+            time_to   = _time_to.time()
+            time      = _time.time()
             if (time_from == time or time_to == time):
-                time = time + timedelta(seconds=300)
+                _time = _time + dt.timedelta(seconds=300)
+                time = _time.time()
 
             if (time > time_from and time < time_to):
-                selected_rule = rule
-                break
+                selected_rules.append(rule)
+                continue
             elif (time >= time_from and time > time_to):
-                if ((time - time_from).seconds // 3600 < 12):
-                    selected_rule = rule
-                    break
+                if (hf.sub_time(time, time_from).hour < 12):
+                #if ((time - time_from).seconds // 3600 < 12):
+                    selected_rules.append(rule)
+                    continue
             elif (time <= time_from and time < time_to):
-                if ( (time_to - time).seconds // 3600 < 12):
-                    selected_rule = rule
-                    break
-        return selected_rule
+                if ( hf.sub_time(time_to, time).hour < 12):
+                #if ( (time_to - time).seconds // 3600 < 12):
+                    selected_rules.append(rule)
+                    continue
+        return selected_rules
 
     """
     Get the rules for given time from the set of rules available
@@ -89,14 +95,15 @@ class MeruService(BaseService):
     TODO(goyalankit) verify the algorithm again. Though it passes all the
     written test cases.
     """
-    def get_rules_for_trip(self, rules, time, duration):
-        start_time    = datetime.strptime(time.strftime("%H:%M"), '%H:%M')
-        end_time      = time + timedelta(seconds=duration)
+    def get_rules_for_trip(self, rules, time, duration, city):
+        start_time    = dt.datetime.strptime(time.strftime("%H:%M"), '%H:%M')
+        end_time      = time + dt.timedelta(seconds=duration)
 
-        start_rule = self.get_rule_for_given_time(rules, start_time)
-        end_rule   = self.get_rule_for_given_time(rules, end_time)
-
-        return start_rule, end_rule
+        city_filter = lambda x: x['city'].lower() == city.lower()
+        start_rules = filter (city_filter, self.get_rule_for_given_time(rules, start_time))
+        end_rules   = filter (city_filter, self.get_rule_for_given_time(rules, end_time))
+        start_rules.extend(end_rules)
+        return start_rules
 
     """
     This method calculates fare based on the given rule.
@@ -156,17 +163,29 @@ class MeruService(BaseService):
     intervals.
     This method also calls the method to update extra information
     """
-    def _calculate_fare(self, rules, distance, duration, time=datetime.now()):
-        s_rule, e_rule = self.get_rules_for_trip(rules, time, duration)
-        if (not s_rule) or (not e_rule):
+    def _calculate_fare(self, service_rules, distance, duration, city, time=dt.datetime.now()):
+        rules = self.get_rules_for_trip(service_rules, time, duration, city)
+        if not rules:
             return None
 
-        s_fare = self.__calculate_fare_per_rule(s_rule, distance)
-        e_fare = self.__calculate_fare_per_rule(e_rule, distance)
+        rules_by_service = {}
+        for rule in rules:
+            if rule['service_type'] in rules_by_service:
+                rules_by_service['service_type'].append(rule)
+            else:
+                rules_by_service['service_type'] = [rule]
 
-        self.__update_fare_related_info( s_rule, s_fare, e_rule, e_fare)
+        fares_by_service = {}
+        for service_type in rules_by_service:
+            fares_by_service[service_type] = {}
+            for rule in rules_by_service[service_type]:
+                fares_by_service[service_type]['fare'] = self.__calculate_fare_per_rule(rule, distance)
+                fares_by_service[service_type]['rule'] = rule
+            #TODO(goyalankit) 
+            #fares_by_service[service_type] = max(stats.iteritems(), key=operator.itemgetter('fare'))[0]
 
-        return max(s_fare, e_fare)
+        #self.__update_fare_related_info( s_rule, s_fare, e_rule, e_fare)
+        return fares_by_service
 
 
     """
@@ -183,7 +202,7 @@ class MeruService(BaseService):
         if not city: return {}
         distance_in_meters     = route.distance
         duration               = route.duration
-        fare = self._calculate_fare(mdata, distance_in_meters, duration)
+        fare = self._calculate_fare(mdata, distance_in_meters, duration, city)
         return fare
 
     def get_fare(self, route):

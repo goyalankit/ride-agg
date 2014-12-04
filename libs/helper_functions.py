@@ -1,6 +1,7 @@
 #
 # Generic helper functions
 #
+import datetime 
 
 """
 Get the unique value for a given list
@@ -21,3 +22,10 @@ def find_city(mdata, route):
     city = [city for city in cities if city in start_address]
     return (city[0] if city else None)
 
+def sub_time(time1, time2):
+    time1_in_minutes = time1.hour * 60 + time1.minute
+    time2_in_minutes = time2.hour * 60 + time2.minute
+    diff = time1_in_minutes - time2_in_minutes
+    hours = diff / 60
+    minutes  = diff % 60
+    return datetime.time(hours, minutes)
