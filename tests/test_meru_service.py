@@ -85,7 +85,6 @@ class TestMeruService(unittest.TestCase):
     def test_calculate_fare(self):
         """Checks that the fare is calculated correctly"""
         # TODO(goyalankit) Pending test case
-        return;
         mdata = [
                     {
                       'rule'       : 1,
@@ -96,7 +95,8 @@ class TestMeruService(unittest.TestCase):
                       'dist_km_for_fixed_fare'  : 1,
                       'fare_per_km_after_fixed' : 20.0,
                       'info'       : 'some info',
-                      'city'       : 'Mumbai'
+                      'city'       : 'Mumbai',
+                      'service_type' : 'Meru Cabs'
 
 
                     },
@@ -108,7 +108,33 @@ class TestMeruService(unittest.TestCase):
                       'night'      : False,
                       'dist_km_for_fixed_fare'  : 1,
                       'fare_per_km_after_fixed' : 20.0,
-                      'city'       : 'Mumbai'
+                      'city'       : 'Mumbai',
+                      'service_type' : 'Meru Cabs'
+                    },
+                    {
+                      'rule'       : 1,
+                      'time_from'  : '23:59',
+                      'time_to'    : '05:00',
+                      'fixed_fare' : 20,
+                      'night'      : True,
+                      'dist_km_for_fixed_fare'  : 1,
+                      'fare_per_km_after_fixed' : 23.0,
+                      'info'       : 'some info',
+                      'city'       : 'Mumbai',
+                      'service_type' : 'Meru Flexi'
+
+
+                    },
+                    {
+                      'rule'       : 1,
+                      'time_from'  : '05:00',
+                      'time_to'    : '23:59',
+                      'fixed_fare' : 10,
+                      'night'      : False,
+                      'dist_km_for_fixed_fare'  : 1,
+                      'fare_per_km_after_fixed' : 23.0,
+                      'city'       : 'Mumbai',
+                      'service_type' : 'Meru Flexi'
                     }
                 ]
         s_rule = self.meru._get_fare_by_distance(self.route)
@@ -116,25 +142,27 @@ class TestMeruService(unittest.TestCase):
         distance = 100 * 1000 # 100KM
         time = datetime.strptime("02:00", '%H:%M')
         fare = self.meru._calculate_fare(mdata, distance, self.route.duration, 'Mumbai', time)
-        # 10 + 99 * 20 = 1990
-        self.assertEqual(fare, 2000)
+        # 20 + 99 * 20 = 2000
+        self.assertEqual(fare['Meru Cabs']['fare'], 2000)
+        # 20 + 99 * 23 = 2297.0
+        self.assertEqual(fare['Meru Flexi']['fare'], 2297.0)
         info = self.meru.get_extra_information()
-        self.assertEqual(info['night_charges_used'], True)
-        self.assertEqual(info['other_info'], 'some info')
+        #self.assertEqual(info['night_charges_used'], True)
+        #self.assertEqual(info['other_info'], 'some info')
 
         self.meru = MeruService()
         # duration at border. but we add 5 minutes so lower one should be
         # charged
         time = datetime.strptime("05:00", '%H:%M')
         fare = self.meru._calculate_fare(mdata, distance, self.route.duration, 'Mumbai', time)
+        self.assertEqual(fare['Meru Cabs']['fare'], 1990.0)
+        self.assertEqual(fare['Meru Flexi']['fare'], 2287.0)
         info = self.meru.get_extra_information()
-        self.assertEqual(fare, 1990)
-        self.assertEqual(info['night_charges_used'], False)
+        #self.assertEqual(info['night_charges_used'], False)
 
     def test_get_fare_by_distance(self):
         """Checks that the fare is never {}. Uses real time for journey"""
         s_rule = self.meru._get_fare_by_distance(self.route)
         self.assertEqual(s_rule == {}, False)
-
 
 

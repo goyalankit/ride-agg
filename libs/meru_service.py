@@ -171,18 +171,18 @@ class MeruService(BaseService):
         rules_by_service = {}
         for rule in rules:
             if rule['service_type'] in rules_by_service:
-                rules_by_service['service_type'].append(rule)
+                rules_by_service[rule['service_type']].append(rule)
             else:
-                rules_by_service['service_type'] = [rule]
+                rules_by_service[rule['service_type']] = [rule]
 
         fares_by_service = {}
         for service_type in rules_by_service:
             fares_by_service[service_type] = {}
             for rule in rules_by_service[service_type]:
-                fares_by_service[service_type]['fare'] = self.__calculate_fare_per_rule(rule, distance)
-                fares_by_service[service_type]['rule'] = rule
-            #TODO(goyalankit) 
-            #fares_by_service[service_type] = max(stats.iteritems(), key=operator.itemgetter('fare'))[0]
+                _rule_fare = self.__calculate_fare_per_rule(rule, distance)
+                if fares_by_service[service_type].get('fare', 0) < _rule_fare:
+                    fares_by_service[service_type]['fare'] = _rule_fare
+                    fares_by_service[service_type]['rule'] = rule
 
         #self.__update_fare_related_info( s_rule, s_fare, e_rule, e_fare)
         return fares_by_service
