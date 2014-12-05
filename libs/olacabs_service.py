@@ -1,10 +1,10 @@
-import config
 import os
 import json
-import urllib
 import yaml
-from base_service import BaseService
+import urllib
+import config
 import datetime
+from base_service import BaseService
 
 
 class OlacabsService(BaseService):
@@ -15,8 +15,8 @@ class OlacabsService(BaseService):
         return False
 
     def get_data(self):
-        if self.__class__.fare_data is None:
-            dpath = config.app_config.get(self.name).get('data_file')
+        if OlacabsService.fare_data is None:
+            dpath = config.app_config.get(self.name.lower()).get('data_file')
             with open(dpath,'r') as dfile:
                 self.__class__.fare_data = yaml.load(dfile)
         return self.__class__.fare_data
