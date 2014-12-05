@@ -18,10 +18,6 @@ class MeruService(BaseService):
         self.info = {}
 
     @property
-    def name(self):
-        return "Meru"
-
-    @property
     def has_api(self):
         return False
 

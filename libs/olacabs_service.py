@@ -11,10 +11,6 @@ class OlacabsService(BaseService):
     fare_data = None
 
     @property
-    def name(self):
-        return "olacabs"
-
-    @property
     def has_api(self):
         return False
 

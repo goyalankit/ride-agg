@@ -4,12 +4,14 @@ import math
 class BaseService:
     __metaclass__ = abc.ABCMeta
 
-    @abc.abstractproperty
+    @property
     def name(self):
         """
         Return the name of the API implementing
         the method.
         """
+        return self.__class__.__name__.split('Service')[0]
+
     @abc.abstractproperty
     def has_api(self):
         """

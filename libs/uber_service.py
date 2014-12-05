@@ -7,7 +7,6 @@ from base_service import BaseService
 from google.appengine.api import urlfetch
 
 class UberService(BaseService):
-
     """
     Method to make request to Uber Servers using their API. This method
     autofills the server token and gets the url based on the url_type defined
@@ -24,10 +23,6 @@ class UberService(BaseService):
         response = urlfetch.fetch(url_with_params, method=urlfetch.GET)
         json_response = json.loads(response.content)
         return response.status_code, json_response
-
-    @property
-    def name(self):
-        return "Uber"
 
     @property
     def has_api(self):

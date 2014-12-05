@@ -16,8 +16,6 @@ class FareTeller:
     def get_fares(self):
         fares = {}
         for service in FareTeller.services:
-            s_l = self.route.start_location
-            e_l = self.route.end_location
             service_obj = service()
             fares[service_obj.name] = service_obj.get_fare(self.route)
         return fares
