@@ -2,6 +2,8 @@
 # Generic helper functions
 #
 import datetime 
+from operator import itemgetter
+from itertools import imap
 
 """
 Get the unique value for a given list
@@ -10,17 +12,19 @@ def uniq(seq):
     seen = set()
     seen_add = seen.add
     return [ x for x in seq if not (x in seen or seen_add(x))]
+    # return set(seq)?
 
 """
 Try to match a city from available cities in service data to the city in the source
 address.
 """
 def find_city(mdata, route):
-    cities = [record['city'].lower() for record in mdata]
-    start_address = route.start_address.lower()
+    start_address = route.start_address.lower().split(', ')
 
-    city = [city for city in cities if city in start_address]
-    return (city[0] if city else None)
+    for city in imap(itemgetter('city'),mdata):
+        if city.lower() in start_address: return city
+
+    return None
 
 def sub_time(time1, time2):
     time1_in_minutes = time1.hour * 60 + time1.minute
@@ -29,3 +33,11 @@ def sub_time(time1, time2):
     hours = diff / 60
     minutes  = diff % 60
     return datetime.time(hours, minutes)
+
+"""
+Get a dictionary representation of a generic object's attributes+attribute values
+(really useful 
+"""
+def dump(obj):
+    return dict((attr,getattr(obj,attr)) for attr in dir(obj)
+                if not attr.startswith('_') and not callable(getattr(obj,attr)))

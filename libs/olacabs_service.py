@@ -1,4 +1,4 @@
-# import config
+import config
 import os
 import json
 import urllib
@@ -8,6 +8,8 @@ import datetime
 
 
 class OlacabsService(BaseService):
+    fare_data = None
+
     @property
     def name(self):
         return "olacabs"
@@ -17,15 +19,16 @@ class OlacabsService(BaseService):
         return False
 
     def get_data(self):
-        with open(os.path.join('../data', self.name+'.yaml'),'r') as df:
-        # with open(config.app_config.get(self.name)['data_file'],'r') as df:
-            data = yaml.load(df)
-        return data
+        if self.__class__.fare_data is None:
+            dpath = config.app_config.get(self.name).get('data_file')
+            with open(dpath,'r') as dfile:
+                self.__class__.fare_data = yaml.load(dfile)
+        return self.__class__.fare_data
 
     def query_services(self,route,time=datetime.datetime.now()):
-        city = route.start_address.split(',')[0].lower()
+        address = route.start_address.lower().split(',')
 
-        f = lambda s: ((city == s['city'].lower())
+        f = lambda s: ((s['city'].lower() in address)
                        and (('time_from' not in s)
                             or (s['time_from'] <= time <= s['time_to'])))
 

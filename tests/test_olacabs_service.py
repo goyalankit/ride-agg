@@ -1,10 +1,7 @@
 import unittest
-import webapp2
 import os
 import json
-from google.appengine.api import memcache
 from google.appengine.ext import db
-from google.appengine.ext import testbed
 
 from libs.olacabs_service import OlacabsService
 from models.route import Route
@@ -13,7 +10,8 @@ import libs.helper_functions as helper_functions
 class TestOlacabsService(unittest.TestCase):
 
     # TODO(goyalankit) move this method to common module
-    def get_route(self):
+    @staticmethod
+    def get_route():
         route_s = open('tests/data/route.json', 'r')
         route_j = json.load(route_s)
         route = Route()
