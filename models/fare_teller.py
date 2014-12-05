@@ -1,5 +1,6 @@
 from libs.uber_service import UberService
 from libs.meru_service import MeruService
+from libs.olacabs_service import OlacabsService
 
 class FareTeller:
 
@@ -7,6 +8,7 @@ class FareTeller:
     # fetch results
     services = [
             UberService,
+            OlacabsService,
             MeruService
         ]
 

@@ -70,7 +70,7 @@ $(document).ready(function() {
       // display results
       for (service in result.fares) {
         tr = $('<tr/>');
-        if (service == "Meru") {
+        if (service == "Meru" || service == "Olacabs") {
           for (rec in result.fares[service]) {
             tr.append("<td>" + service + "</td>");
             tr.append("<td>" + rec + "</td>");
