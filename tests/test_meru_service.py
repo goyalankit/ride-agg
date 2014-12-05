@@ -165,4 +165,3 @@ class TestMeruService(unittest.TestCase):
         s_rule = self.meru._get_fare_by_distance(self.route)
         self.assertEqual(s_rule == {}, False)
 
-

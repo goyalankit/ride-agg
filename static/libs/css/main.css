@@ -96,6 +96,14 @@ html, body, #map-canvas {
   display: none;
 }
 
+.service-results-table {
+  width: 50%;
+  float: right;
+  border-color: white;
+  margin-top: 10%;
+  color: white;
+}
+
 @media print {
   #map-canvas {
     height: 500px;
