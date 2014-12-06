@@ -4,9 +4,11 @@ import webapp2
 import math
 import config
 from base_service import BaseService
+from google.appengine.api import memcache
 from google.appengine.api import urlfetch
 
 class UberService(BaseService):
+    uber_product_data = None
     """
     Method to make request to Uber Servers using their API. This method
     autofills the server token and gets the url based on the url_type defined
@@ -38,6 +40,10 @@ class UberService(BaseService):
                 }
 
         status, result = self.make_request("price_url", params)
+        self._get_product_info(src_lat, src_long)
+        for res in result['prices']:
+            res['image'] = self.image(res['display_name'])
+
         return result
 
     def _get_fare_by_distance(self, distance):
@@ -49,6 +55,25 @@ class UberService(BaseService):
         result = self._get_fare_by_lat_lang(s_l['lat'], s_l['lon'],
                 e_l['lat'], e_l['lon'])
         return result
+
+
+    def image(self, display_name):
+        for product in self.__class__.uber_product_data:
+            if display_name == product['display_name']:
+                return product['image'];
+
+    def _get_product_info(self, src_lat, src_long, force=False):
+        params = {
+                'latitude': src_lat,
+                'longitude': src_long,
+                }
+
+        if (not self.__class__.uber_product_data) or force:
+            status, result = self.make_request("products_url", params)
+            self.__class__.uber_product_data = result['products']
+
+        return self.__class__.uber_product_data
+
 
     """
     This is a method reserved for future use. Just in case we want to pass

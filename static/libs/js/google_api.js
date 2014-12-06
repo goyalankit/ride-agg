@@ -100,7 +100,7 @@ $(document).ready(function() {
               tr.append("<td>" + result.fares[service].prices[i].high_estimate + "</td>");
               tr.append("</tr>");
               $('table').append(tr);
-              tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'">' + "Info about uber" + "</div></td></tr>");
+              tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"><img src="' + result.fares[service].prices[i].image + '"</div></td></tr>');
 
               $('table').append(tr);
               count = count + 1;
