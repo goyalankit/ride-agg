@@ -19,7 +19,7 @@ Try to match a city from available cities in service data to the city in the sou
 address.
 """
 def find_city(mdata, route):
-    start_address = route.start_address.lower().split(', ')
+    start_address = route.start_address.lower()
 
     for city in imap(itemgetter('city'),mdata):
         if city.lower() in start_address: return city

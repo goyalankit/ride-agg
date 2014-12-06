@@ -84,6 +84,8 @@ html, body, #map-canvas {
 
 #map-canvas {
   margin-right: 400px;
+  margin-left: 2%;
+  margin-top: 2%;
 }
 
 #control {
@@ -102,6 +104,11 @@ html, body, #map-canvas {
   border-color: white;
   margin-top: 10%;
   color: white;
+}
+
+#main-table-div{
+  margin-top: 4%;
+  margin-right: 10%;
 }
 
 @media print {

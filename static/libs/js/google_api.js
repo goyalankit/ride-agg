@@ -1,4 +1,3 @@
-
 function autocomplete() {
   var defaultBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng(-33.8902, 151.1759),
@@ -11,6 +10,13 @@ function autocomplete() {
 
     autocomplete1 = new google.maps.places.Autocomplete(src_input, options);
     autocomplete2 = new google.maps.places.Autocomplete(dst_input, options);
+    //setUpInitialTable();
+}
+
+function create_table_entry() {
+  var tr = $('<tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">');
+  tr.append('<td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>');
+  return tr;
 }
 
 $(document).ready(function() {
@@ -49,7 +55,6 @@ $(document).ready(function() {
     });
   }
 
-
   // TODO(goyalankit) Format the results
   // and check for error conditions
   function makeRequestForFares(_response) {
@@ -64,32 +69,47 @@ $(document).ready(function() {
     }
     // make the post request to server
     $.post('/', {data: JSON.stringify(params)}, function(result) {
-      $('table').empty();
       json = result;
-      var tr;
-      // display results
-      for (service in result.fares) {
-        tr = $('<tr/>');
-        if (service == "Meru" || service == "Olacabs") {
-          for (rec in result.fares[service]) {
-            tr.append("<td>" + service + "</td>");
-            tr.append("<td>" + rec + "</td>");
-            tr.append("<td>" + result.fares[service][rec]["fare"] + "</td>");
-            $('table').append(tr);
-            tr = $('<tr/>');
-          }
-        }
+        $('#main-table-div').show();
+        var tr = $('<tr data-toggle="collapse" data-target="#demo0" class="accordion-toggle">');
+        tr.append('<td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>');
+        var count = 0;
+        // display results
+        for (service in result.fares) {
+          if (service == "Meru" || service == "Olacabs") {
+            for (rec in result.fares[service]) {
+              tr.append("<td>" + service + "</td>");
+              tr.append("<td>" + rec + "</td>");
+              tr.append("<td>" + result.fares[service][rec]["fare"] + "</td>");
+              tr.append("</tr>");
+              $('table').append(tr);
+              tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'">' + result.fares[service][rec]["rule"]["info"] + "</div></td></tr>");
 
-        if (service == "Uber") {
-          for (i = 0; i < result.fares[service].prices.length; i++) {
-            tr.append("<td>" + service + "</td>");
-            tr.append("<td>" + result.fares[service].prices[i].display_name + "</td>");
-            tr.append("<td>" + result.fares[service].prices[i].high_estimate + "</td>");
-            $('table').append(tr);
-            tr = $('<tr/>');
+              $('table').append(tr);
+              count = count + 1;
+              var str = "<tr data-toggle='collapse' data-target='#demo"+count+"' class='accordion-toggle'>";
+              tr = $(str);
+              tr.append('<td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>');
+            }
+          }
+
+          if (service == "Uber") {
+            for (i = 0; i < result.fares[service].prices.length; i++) {
+              tr.append("<td>" + service + "</td>");
+              tr.append("<td>" + result.fares[service].prices[i].display_name + "</td>");
+              tr.append("<td>" + result.fares[service].prices[i].high_estimate + "</td>");
+              tr.append("</tr>");
+              $('table').append(tr);
+              tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'">' + "Info about uber" + "</div></td></tr>");
+
+              $('table').append(tr);
+              count = count + 1;
+              var str = "<tr data-toggle='collapse' data-target='#demo"+count+"' class='accordion-toggle'>";
+              tr = $(str);
+              tr.append('<td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>');
+            }
           }
         }
-      }
 
     }, 'json');
   }

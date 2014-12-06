@@ -89,8 +89,8 @@
 - city: "Delhi"
   currency_code: 'IND'
   service_type: 'Meru Cabs'
-  fare_per_km_after_fixed: 23:00
-  fixed_fare: 69
+  fare_per_km_after_fixed: 23.00
+  fixed_fare: 69.0
   dist_km_for_fixed_fare: 3
   service_tax: 4.94
   time_from: "5:00"

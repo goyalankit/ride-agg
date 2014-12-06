@@ -179,8 +179,6 @@ class MeruService(BaseService):
                 if fares_by_service[service_type].get('fare', 0) < _rule_fare:
                     fares_by_service[service_type]['fare'] = _rule_fare
                     fares_by_service[service_type]['rule'] = rule
-
-        #self.__update_fare_related_info( s_rule, s_fare, e_rule, e_fare)
         return fares_by_service
 
 

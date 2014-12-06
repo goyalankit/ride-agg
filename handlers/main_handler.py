@@ -17,7 +17,6 @@ class MainHandler(BaseHandler):
         if not self.request.get('data'):
             self.render_json({error: 'data not present'})
             return
-
         data = self.request.get('data')
         # TODO(goyalankit) check if we need to handle
         # more than 1 data elements
