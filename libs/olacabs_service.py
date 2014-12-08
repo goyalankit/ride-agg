@@ -41,9 +41,8 @@ class OlacabsService(BaseService):
             fare_rate = svc['fare_per_km']
 
             if 'fixed_fare_dist_km' in svc:
-                fixed_fare_dist = min(distance, svc['fixed_fare_dist_km'])
-                fare += fixed_fare_dist*svc['fixed_fare_per_km']
-                distance -= fixed_fare_dist
+                fare += svc['fixed_fare_per_km']
+                distance -= min(distance, svc['fixed_fare_dist_km'])
             elif 'fixed_fare_per_km' in svc:
                 fare_rate = svc['fixed_fare_per_km']
 
