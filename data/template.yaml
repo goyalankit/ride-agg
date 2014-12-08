@@ -17,7 +17,7 @@ currency_code: true
 
 # optional fields
 fare_per_min: false
-fixed_fare_per_km: false
+fixed_fare: false
 fixed_fare_per_min: false
 fixed_fare_dist_km: false
 wait_charge_per_min: false

@@ -9,4 +9,3 @@ class TestOlacabsService(ServiceTester):
 
     def test_name(self):
         self.assertEqual(self.name, "Olacabs")
-

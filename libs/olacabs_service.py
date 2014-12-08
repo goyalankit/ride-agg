@@ -36,17 +36,26 @@ class OlacabsService(BaseService):
         services = self.query_services(route)
 
         for svc in services:
-            fare = 0
-            distance = route.distance # assuming kilometers
-            fare_rate = svc['fare_per_km']
+            distance = route.distance
 
+            # initial fare is the minimum fare if there is one
+            svc['fare'] = 0
+
+            # subtract the distance that minimum payment covers
             if 'fixed_fare_dist_km' in svc:
-                fare += svc['fixed_fare_per_km']
-                distance -= min(distance, svc['fixed_fare_dist_km'])
-            elif 'fixed_fare_per_km' in svc:
-                fare_rate = svc['fixed_fare_per_km']
+                svc['fare'] += svc['fixed_fare']
+                distance -= min(distance, svc['fixed_fare_dist_km']*1000)
 
-            fare += distance*fare_rate
-            svc['fare'] = fare
+            # the rest of the ride is charged at the regular rate
+            svc['fare'] += distance*svc['fare_per_km']/1000.
+
+            svc['fare'] = max(svc['fixed_fare'], svc['fare'])
+
+            # in case of charging by ride time
+            if 'fare_per_min' in svc:
+                rate_by_time = round(route.duration*svc['fare_per_min']/60.)
+                svc['fare'] += rate_by_time
+
+            svc['fare'] += svc.get('service_tax',0)
 
         return services

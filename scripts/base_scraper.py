@@ -1,10 +1,11 @@
 import os,sys
 import yaml
 import abc
-# import config
+import config
 
-# template = yaml.load(config.app_config.get('template')['data_file'])
-template = yaml.load(open('../data/template.yaml'))
+dpath = config.app_config.get('template').get('data_file')
+with open(dpath,'r') as dfile:
+    template = yaml.load(dfile)
 required_keys = set(k for k,v in template.items() if v)
 
 class BaseScraper(object):
@@ -12,13 +13,12 @@ class BaseScraper(object):
 
     @property
     def name(self):
-        return self.__class__.__name__.rstrip('Scraper').lower()
+        return self.__class__.__name__.split('Scraper')[0]
 
     @property
     def save_path(self):
         """ where to save data file """
-        # return config.app_config.get(cls.name)['data_file']
-        return os.path.join('../data', self.name+'.yaml')
+        return config.app_config.get(self.name.lower()).get('data_file')
 
     @classmethod
     def assertValidService(cls, service):

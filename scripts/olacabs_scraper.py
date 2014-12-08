@@ -1,8 +1,11 @@
+import config
 import re
 import urllib
 from bs4 import BeautifulSoup
+from base_scraper import BaseScraper
 import httplib
 from itertools import imap,ifilter
+import os
 
 numparse = lambda x: map(float,re.findall(r'\d+\.?\d*',x))
 
@@ -22,15 +25,14 @@ class OlacabsScraper(BaseScraper):
         std_svc['vehicle_type'] = unicode(service['category'])
 
         min_bill = numparse(service['minimum_bill'])
-        std_svc['fixed_fare_per_km'] = min_bill[0]
+        std_svc['fixed_fare'] = min_bill[0]
         if len(min_bill)>1:
           std_svc['fixed_fare_dist_km'] = min_bill[1]
         std_svc['fare_per_km'] = numparse(service['extra_km_charges'])[0]
 
         if 'wait_time_charges' in service:
             std_svc['wait_charge_per_min'] = numparse(service['wait_time_charges'])[0]
-
-        if 'ride_time_charges' in service:
+        elif 'ride_time_charges' in service:
             std_svc['fare_per_min'] = numparse(service['ride_time_charges'])[0]
 
         return std_svc
@@ -51,26 +53,25 @@ class OlacabsScraper(BaseScraper):
     def scrape_fares(cls, cities=None):
         conn = httplib.HTTPConnection("www.olacabs.com")
 
-
         if cities is None:
             cities = cls.get_cities(conn)
         elif not hasattr(cities,'__iter__'):
             cities = [cities]
 
-        format = lambda x: re.sub('\s','_', x.get_text().lower().split('(')[0])
+        fmt = lambda x: re.sub('\s','_', x.get_text().lower().split('(')[0])
 
         for city in cities:
-            conn.request("GET", "/fares" + '/' + city.lower())
+            conn.request("GET", ("/fares" + '/' + city.lower()).strip())
 
             soup = BeautifulSoup(conn.getresponse().read())
-            tables = imap(lambda x: soup.find('div', class_=x), cls._table_types)
-            for i,tablesoup in enumerate(ifilter(None,tables)):
+            tables = [soup.find('div', class_=tbltype) for tbltype in cls._table_types]
+            for i,tablesoup in enumerate(filter(None,tables)):
                 soup_ptr = tablesoup.find('tr')
                 if not soup_ptr: continue
 
                 ncols = int(soup_ptr.th['colspan'])
                 soup_ptr = soup_ptr.find_next('tr')
-                headers = map(format, soup_ptr.find_all('th'))
+                headers = [fmt(th) for th in soup_ptr.find_all('th')]
                 
                 content = tablesoup.find_all('td')
                 nrows = len(content)/ncols
