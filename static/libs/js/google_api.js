@@ -49,9 +49,10 @@ $(document).ready(function() {
     directionsService.route(request, function(response, status) {
       if (status == google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
+        $('#main-table-div').show();
+        makeRequestForFares(response);
         $("#map-canvas").show();
         google.maps.event.trigger(map, 'resize');
-        setTimeout( makeRequestForFares(response), 0 );
       }
     });
   }
@@ -72,6 +73,7 @@ $(document).ready(function() {
     $.post('/', {data: JSON.stringify(params)}, function(result) {
       json = result;
         $('#main-table-div').show();
+        $('#service-results-table').empty();
         var tr = $("<thead class='service-data-header'> <tr><th>&nbsp;</th> <th>Service</th> <th>Service Type</th> <th>Fare</th> </tr> </thead>");
         $('#service-results-table').append(tr);
         tr = $('<tr data-toggle="collapse" data-target="#demo0" class="accordion-toggle">');
@@ -79,7 +81,60 @@ $(document).ready(function() {
         var count = 0;
         // display results
         for (service in result.fares) {
-          if (service == "Meru" || service == "Olacabs") {
+          if (service == "Olacabs") {
+            for (o = 0; o < result.fares[service].length; o++) {
+              tr.append("<td>" + service + "</td>");
+              tr.append("<td>" + result.fares[service][o]["service_type"] + "</td>");
+              tr.append("<td>" + result.fares[service][o]["fare"] + " " + result.fares[service][o]["currency_code"] + "</td>");
+              tr.append("</tr>");
+              //$('table').append(tr);
+              $('#service-results-table').append(tr);
+
+              if (typeof result.fares[service][o]["info"] !== "undefined") {
+                tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
+                     <table class="table table-striped"><tr><td  class="col-md-4"> <i class="fa fa-clock-o"></i>  <b>Waiting:</b> \
+                     ' + result.fares[service][o]["info"] + '"</td><td><i class="glyphicon glyphicon-cog">Night Charges Used</i></td></tr></table></div></td></tr>');
+              } else if (typeof result.fares[service][o]["wait_charge_per_min"] !== "undefined"){
+                tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
+                     <table class="table table-striped"><tr><td  class="col-md-4"> \
+                     ' + " <i class='fa fa-clock-o'></i> <b>Waiting: </b>" + result.fares[service][o]["wait_charge_per_min"] + ' INR per minute</td><td><i class="glyphicon glyphicon-cog">Night Charges Used</i></td></tr></table></div></td></tr>');
+              }
+
+
+              $('#service-results-table').append(tr);
+              //$('table').append(tr);
+              count = count + 1;
+              var str = "<tr data-toggle='collapse' data-target='#demo"+count+"' class='accordion-toggle'>";
+              tr = $(str);
+              tr.append('<td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>');
+
+            }
+          }
+
+          if (service == "Uber") {
+            for (i = 0; i < result.fares[service].prices.length; i++) {
+              tr.append("<td>" + service + "</td>");
+              tr.append("<td>" + result.fares[service].prices[i].display_name + "</td>");
+              tr.append("<td>" + result.fares[service].prices[i].high_estimate + " " + result.fares[service].prices[i].currency_code + "</td>");
+              tr.append("</tr>");
+              //$('table').append(tr);
+              $('#service-results-table').append(tr);
+              tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
+                     <table class="table table-striped"><tr><td class="col-md-3"> \
+                     <img src="' + result.fares[service].prices[i].image + '"</td><td class="col-md-3 capacityNumber"> <b>Capacity:</b> '+result.fares[service].prices[i].capacity+'</td> \
+                     <td class="col-md-3 capacityNumber"><a href="https://www.uber.com/">Book the cab</a></td></tr></table></div></td></tr>');
+
+
+              $('#service-results-table').append(tr);
+              //$('table').append(tr);
+              count = count + 1;
+              var str = "<tr data-toggle='collapse' data-target='#demo"+count+"' class='accordion-toggle'>";
+              tr = $(str);
+              tr.append('<td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>');
+            }
+          }
+
+          if (service == "Meru") {
             for (rec in result.fares[service]) {
               tr.append("<td>" + service + "</td>");
               tr.append("<td>" + rec + "</td>");
@@ -101,29 +156,6 @@ $(document).ready(function() {
 
               //$('table').append(tr);
               $('#service-results-table').append(tr);
-              count = count + 1;
-              var str = "<tr data-toggle='collapse' data-target='#demo"+count+"' class='accordion-toggle'>";
-              tr = $(str);
-              tr.append('<td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>');
-            }
-          }
-
-          if (service == "Uber") {
-            for (i = 0; i < result.fares[service].prices.length; i++) {
-              tr.append("<td>" + service + "</td>");
-              tr.append("<td>" + result.fares[service].prices[i].display_name + "</td>");
-              tr.append("<td>" + result.fares[service].prices[i].high_estimate + " " + result.fares[service].prices[i].currency_code + "</td>");
-              tr.append("</tr>");
-              //$('table').append(tr);
-              $('#service-results-table').append(tr);
-              tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
-                     <table class="table table-striped"><tr><td class="col-md-3"> \
-                     <img src="' + result.fares[service].prices[i].image + '"</td><td class="col-md-3 capacityNumber"> <b>Capacity:</b> '+result.fares[service].prices[i].capacity+'</td> \
-                     <td class="col-md-3 capacityNumber"><a href="https://www.uber.com/">Book the cab</a></td></tr></table></div></td></tr>');
-
-
-              $('#service-results-table').append(tr);
-              //$('table').append(tr);
               count = count + 1;
               var str = "<tr data-toggle='collapse' data-target='#demo"+count+"' class='accordion-toggle'>";
               tr = $(str);

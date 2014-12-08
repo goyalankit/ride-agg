@@ -22,7 +22,7 @@ class OlacabsService(BaseService):
         return self.__class__.fare_data
 
     def query_services(self,route,time=datetime.datetime.now()):
-        address = route.start_address.lower().split(', ')
+        address = route.start_address.lower()
 
         f = lambda s: ((s['city'].lower() in address)
                        and (('time_from' not in s)

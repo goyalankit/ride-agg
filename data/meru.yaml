@@ -1,5 +1,5 @@
 - city: 'Mumbai'
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Cabs'
   fare_per_km_after_fixed: 20.0
   fixed_fare: 27
@@ -10,7 +10,7 @@
   time_to: "23:59" # 24:00 is not valid in python time api
   night: false
 - city: "Mumbai"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Cabs'
   wait_charge_per_min: 2.5
   fare_per_km_after_fixed: 25
@@ -21,7 +21,7 @@
   time_to: "05:00"
   night: true
 - city: "Mumbai"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Flexi'
   wait_charge_per_min: 2.5
   fare_per_km_after_fixed: 23.0
@@ -32,7 +32,7 @@
   time_to: "23:59"
   night: false
 - city: "Mumbai"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Flexi'
   wait_charge_per_min: 2.5
   fare_per_km_after_fixed: 23.0
@@ -43,7 +43,7 @@
   time_to: "05:00"
   night: true
 - city: "Bengaluru"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Cabs'
   fare_per_km_after_fixed: 19.50
   fixed_fare: 80
@@ -54,7 +54,7 @@
   info: "No charge for the first 20 minutes and thereafter Rs.10 /15 mins or part thereafter."
   night: false
 - city: "Bengaluru"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Cabs'
   fare_per_km_after_fixed: 21.45
   fixed_fare: 88
@@ -65,7 +65,7 @@
   info: "No charge for the first 20 minutes and thereafter Rs.11 /15 mins or part thereafter."
   night: true
 - city: "Bengaluru"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Flexi'
   wait_charge_per_min: 2.0
   fare_per_km_after_fixed: 19.50
@@ -76,7 +76,7 @@
   time_to: "23:59"
   night: false
 - city: "Bengaluru"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Flexi'
   wait_charge_per_min: 2.20
   fare_per_km_after_fixed: 21.45
@@ -87,7 +87,7 @@
   time_to: "06:00"
   night: true
 - city: "Delhi"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Cabs'
   fare_per_km_after_fixed: 23.00
   fixed_fare: 69.0
@@ -98,7 +98,7 @@
   info: "No charge for the first 15 minutes and thereafter Rs. 30/- per hour or part thereof."
   night: false
 - city: "Delhi"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Cabs'
   fare_per_km_after_fixed: 28.75
   fixed_fare: 86.25
@@ -109,7 +109,7 @@
   info: "No charge for the first 15 minutes and thereafter Rs. 37.50/- per hour or part thereof."
   night: true
 - city: "Delhi"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Flexi'
   wait_charge_per_min: 2.20
   fare_per_km_after_fixed: 23.00
@@ -120,7 +120,7 @@
   time_to: "23:00"
   night: false
 - city: "Delhi"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Flexi'
   wait_charge_per_min: 2.20
   fare_per_km_after_fixed: 23.00
@@ -131,7 +131,7 @@
   time_to: "05:00"
   night: true
 - city: "Hyderabad"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Cabs'
   fare_per_km_after_fixed: 21.00
   fixed_fare: 40
@@ -142,7 +142,7 @@
   info: "No charge for the first 10 mins Rs 1 / min thereafter"
   night: false
 - city: "Hyderabad"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Cabs'
   fare_per_km_after_fixed: 26.25
   fixed_fare: 50.00
@@ -153,7 +153,7 @@
   info: "No charge for the first 10 mins Rs 1.25 / min thereafter"
   night: true
 - city: "Hyderabad"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Flexi'
   fare_per_km_after_fixed: 21.00
   fixed_fare: 40
@@ -164,7 +164,7 @@
   info: "No charge for the first 10 mins Rs 1 / min thereafter"
   night: false
 - city: "Hyderabad"
-  currency_code: 'IND'
+  currency_code: 'INR'
   service_type: 'Meru Flexi'
   fare_per_km_after_fixed: 26.25
   fixed_fare: 50.00
