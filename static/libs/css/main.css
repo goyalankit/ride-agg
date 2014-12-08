@@ -91,7 +91,8 @@ html, body, #map-canvas {
 #map-canvas {
   height: 500px;
   width: 51%;
-  margin-left: 25%;
+  margin-left: 28%;
+  margin-bottom: 1%;
  /* margin-right: 400px;
   margin-left: 2%;
   margin-top: 2%;
@@ -127,8 +128,8 @@ html, body, #map-canvas {
 }
 
 #table-container {
-  padding-left: 25%;
-  padding-right: 25%;
+  padding-left: 31%;
+  padding-right: 18%;
   padding-top: 3%;
   padding-bottom: 3%;
 }

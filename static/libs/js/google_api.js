@@ -90,17 +90,18 @@ $(document).ready(function() {
               //$('table').append(tr);
               $('#service-results-table').append(tr);
 
+              var created_table = false
               if (typeof result.fares[service][o]["info"] !== "undefined") {
+                created_table = true
                 tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
                      <table class="table table-striped"><tr><td  class="col-md-4"> <i class="fa fa-clock-o"></i>  <b>Waiting:</b> \
                      ' + result.fares[service][o]["info"] + '"</td><td><i class="glyphicon glyphicon-cog">Night Charges Used</i></td></tr></table></div></td></tr>');
               } else if (typeof result.fares[service][o]["wait_charge_per_min"] !== "undefined"){
+                created_table = true
                 tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
                      <table class="table table-striped"><tr><td  class="col-md-4"> \
-                     ' + " <i class='fa fa-clock-o'></i> <b>Waiting: </b>" + result.fares[service][o]["wait_charge_per_min"] + ' INR per minute</td><td><i class="glyphicon glyphicon-cog">Night Charges Used</i></td></tr></table></div></td></tr>');
+                     ' + " <i class='fa fa-clock-o'></i> <b>Waiting: </b>" + result.fares[service][o]["wait_charge_per_min"] + ' INR per minute</td><td><i > <i class="fa fa-car"></i> Vehicle: </i>'+ result.fares[service][o]["vehicle_type"] +'</td></tr></table></div></td></tr>');
               }
-
-
               $('#service-results-table').append(tr);
               //$('table').append(tr);
               count = count + 1;
@@ -143,15 +144,16 @@ $(document).ready(function() {
               $('#service-results-table').append(tr);
               //tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'">' + result.fares[service][rec]["rule"]["info"] + "</div></td></tr>");
 
+
               // waiting info
               if (typeof result.fares[service][rec]["rule"]["info"] !== "undefined") {
                 tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
                      <table class="table table-striped"><tr><td  class="col-md-4"> <i class="fa fa-clock-o"></i>  <b>Waiting:</b> \
-                     ' + result.fares[service][rec]["rule"]["info"] + '"</td><td><i class="glyphicon glyphicon-cog">Night Charges Used</i></td></tr></table></div></td></tr>');
+                     ' + result.fares[service][rec]["rule"]["info"] + '"</td><td><i class="fa fa-moon-o"></i>Night Charges Used</i></td></tr></table></div></td></tr>');
               } else if (typeof result.fares[service][rec].rule.wait_charge_per_min !== "undefined"){
                 tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
                      <table class="table table-striped"><tr><td  class="col-md-4"> \
-                     ' + " <i class='fa fa-clock-o'></i> <b>Waiting: </b>" + result.fares[service][rec].rule.wait_charge_per_min + ' INR per minute</td><td><i class="glyphicon glyphicon-cog">Night Charges Used</i></td></tr></table></div></td></tr>');
+                     ' + " <i class='fa fa-clock-o'></i> <b>Waiting: </b>" + result.fares[service][rec].rule.wait_charge_per_min + ' INR per minute</td><td><i class="fa fa-moon-o">Night Charges Used</i></td></tr></table></div></td></tr>');
               }
 
               //$('table').append(tr);
