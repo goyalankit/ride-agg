@@ -114,10 +114,15 @@ class MeruService(BaseService):
             fare += rule['fixed_fare']
             dist_in_km -= rule['dist_km_for_fixed_fare']
             if (dist_in_km <= 0):
+                if 'service_tax' in rule:
+                    fare = fare + (fare * rule['service_tax'] / 100)
                 return fare
 
         ceil_distance = math.ceil(dist_in_km)
         fare += ceil_distance * rule['fare_per_km_after_fixed']
+
+        if 'service_tax' in rule:
+            fare = fare + (fare * rule['service_tax'] / 100)
         return fare
 
 

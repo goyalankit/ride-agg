@@ -138,7 +138,7 @@ $(document).ready(function() {
             for (rec in result.fares[service]) {
               tr.append("<td>" + service + "</td>");
               tr.append("<td>" + rec + "</td>");
-              tr.append("<td>" + result.fares[service][rec]["fare"] + "</td>");
+              tr.append("<td>" + result.fares[service][rec]["fare"] + " " + result.fares[service][rec].rule.currency_code +"</td>");
               tr.append("</tr>");
               $('#service-results-table').append(tr);
               //tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'">' + result.fares[service][rec]["rule"]["info"] + "</div></td></tr>");
