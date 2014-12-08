@@ -9,12 +9,12 @@ body {
   /*background-image:url('http://cdn.twitrcovers.com/wp-content/uploads/2012/09/New-York-City-l.jpg');*/
   /*background-image:url('http://i.imgur.com/1TC6hAX.jpg?1');*/
   background-size:cover;
+  position: relative;
 }
 
-.bottom-wide {
-  width:100%;
-  height:300px;
-  padding-top: 5%;
+.bottom-wide-stuff {
+  /*margin-top: 25%;*/
+  position: relative;
 }
 
 .wide img {
@@ -50,6 +50,7 @@ body {
 
 .container-top {
   margin-top: 3%;
+  position: relative;
 }
 
 #submitbtn {
@@ -57,6 +58,10 @@ body {
   margin-left: -1%;
 }
 
+.col-md-3.capacityNumber {
+  padding-top: 2.5%;
+  padding-left: 4.5%;
+}
 
 /*Google Api*/
 html, body, #map-canvas {
@@ -73,8 +78,9 @@ html, body, #map-canvas {
   z-index: 5;
   background-color: #fff;
   padding: 5px;
-  border: 1px solid #999;
+  /*border: 1px solid #999;*/
 }
+
 #directions-panel {
   height: 100%;
   float: right;
@@ -83,9 +89,13 @@ html, body, #map-canvas {
 }
 
 #map-canvas {
-  margin-right: 400px;
+  height: 500px;
+  width: 51%;
+  margin-left: 25%;
+ /* margin-right: 400px;
   margin-left: 2%;
   margin-top: 2%;
+  */
 }
 
 #control {
@@ -106,9 +116,38 @@ html, body, #map-canvas {
   color: white;
 }
 
-#main-table-div{
-  margin-top: 4%;
-  margin-right: 10%;
+#main-table-div {
+  margin-top: 1%;
+  width: 100%;
+  padding: 0;
+  position: relative;
+  /*
+   *background-color: #000;
+   */
+}
+
+#table-container {
+  padding-left: 25%;
+  padding-right: 25%;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.panel {
+  background-color: #8D2323;
+}
+
+.accordion-toggle td {
+  color: white;
+}
+
+.service-data-header {
+  color: yellow;
+  font-weight:800;
+}
+
+#service-results-table.tr {
+  color: white;
 }
 
 @media print {
@@ -124,4 +163,37 @@ html, body, #map-canvas {
 }
 
 
+.panel-data {
+  border-color: black;
+}
 
+
+.hiddenRow.tr {
+  color: black;
+}
+
+.container-fixed {
+bottom: 0;
+position: fixed;
+left: 0;
+right: 0;
+top: 0;
+}
+ 
+.container-fixed .col {
+  height: 100%;
+  overflow: auto;
+}
+ 
+.row-xs-12 { height: 100%; }
+.row-xs-11 { height: 91.66666666666666%; }
+.row-xs-10 { height: 83.33333333333334%; }
+.row-xs-9 { height: 75%; }
+.row-xs-8 { height: 66.66666666666666%; }
+.row-xs-7 { height: 58.333333333333336%; }
+.row-xs-6 { height: 50%; }
+.row-xs-5 { height: 41.66666666666667%;}
+.row-xs-4 { height: 33.33333333333333%;}
+.row-xs-3 { height: 25%; }
+.row-xs-2 { height: 16.666666666666664%; }
+.row-xs-1 { height: 8.333333333333332%; } 

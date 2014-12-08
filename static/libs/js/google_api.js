@@ -30,7 +30,8 @@ $(document).ready(function() {
     var delhi = new google.maps.LatLng(28.6469655,77.0932634);
     var mapOptions = {
       zoom:10,
-      center: delhi
+      center: delhi,
+       styles: [{"featureType":"landscape","stylers":[{"saturation":-100},{"lightness":65},{"visibility":"on"}]},{"featureType":"poi","stylers":[{"saturation":-100},{"lightness":51},{"visibility":"simplified"}]},{"featureType":"road.highway","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"road.arterial","stylers":[{"saturation":-100},{"lightness":30},{"visibility":"on"}]},{"featureType":"road.local","stylers":[{"saturation":-100},{"lightness":40},{"visibility":"on"}]},{"featureType":"transit","stylers":[{"saturation":-100},{"visibility":"simplified"}]},{"featureType":"administrative.province","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":-25},{"saturation":-100}]},{"featureType":"water","elementType":"geometry","stylers":[{"hue":"#ffff00"},{"lightness":-25},{"saturation":-97}]}]
     };
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
     directionsDisplay.setMap(map);
@@ -71,7 +72,9 @@ $(document).ready(function() {
     $.post('/', {data: JSON.stringify(params)}, function(result) {
       json = result;
         $('#main-table-div').show();
-        var tr = $('<tr data-toggle="collapse" data-target="#demo0" class="accordion-toggle">');
+        var tr = $("<thead class='service-data-header'> <tr><th>&nbsp;</th> <th>Service</th> <th>Service Type</th> <th>Fare</th> </tr> </thead>");
+        $('#service-results-table').append(tr);
+        tr = $('<tr data-toggle="collapse" data-target="#demo0" class="accordion-toggle">');
         tr.append('<td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>');
         var count = 0;
         // display results
@@ -82,10 +85,22 @@ $(document).ready(function() {
               tr.append("<td>" + rec + "</td>");
               tr.append("<td>" + result.fares[service][rec]["fare"] + "</td>");
               tr.append("</tr>");
-              $('table').append(tr);
-              tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'">' + result.fares[service][rec]["rule"]["info"] + "</div></td></tr>");
+              $('#service-results-table').append(tr);
+              //tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'">' + result.fares[service][rec]["rule"]["info"] + "</div></td></tr>");
 
-              $('table').append(tr);
+              // waiting info
+              if (typeof result.fares[service][rec]["rule"]["info"] !== "undefined") {
+                tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
+                     <table class="table table-striped"><tr><td  class="col-md-4"> <i class="fa fa-clock-o"></i>  <b>Waiting:</b> \
+                     ' + result.fares[service][rec]["rule"]["info"] + '"</td><td><i class="glyphicon glyphicon-cog">Night Charges Used</i></td></tr></table></div></td></tr>');
+              } else if (typeof result.fares[service][rec].rule.wait_charge_per_min !== "undefined"){
+                tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
+                     <table class="table table-striped"><tr><td  class="col-md-4"> \
+                     ' + " <i class='fa fa-clock-o'></i> <b>Waiting: </b>" + result.fares[service][rec].rule.wait_charge_per_min + ' INR per minute</td><td><i class="glyphicon glyphicon-cog">Night Charges Used</i></td></tr></table></div></td></tr>');
+              }
+
+              //$('table').append(tr);
+              $('#service-results-table').append(tr);
               count = count + 1;
               var str = "<tr data-toggle='collapse' data-target='#demo"+count+"' class='accordion-toggle'>";
               tr = $(str);
@@ -97,12 +112,18 @@ $(document).ready(function() {
             for (i = 0; i < result.fares[service].prices.length; i++) {
               tr.append("<td>" + service + "</td>");
               tr.append("<td>" + result.fares[service].prices[i].display_name + "</td>");
-              tr.append("<td>" + result.fares[service].prices[i].high_estimate + "</td>");
+              tr.append("<td>" + result.fares[service].prices[i].high_estimate + " " + result.fares[service].prices[i].currency_code + "</td>");
               tr.append("</tr>");
-              $('table').append(tr);
-              tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"><img src="' + result.fares[service].prices[i].image + '"</div></td></tr>');
+              //$('table').append(tr);
+              $('#service-results-table').append(tr);
+              tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
+                     <table class="table table-striped"><tr><td class="col-md-3"> \
+                     <img src="' + result.fares[service].prices[i].image + '"</td><td class="col-md-3 capacityNumber"> <b>Capacity:</b> '+result.fares[service].prices[i].capacity+'</td> \
+                     <td class="col-md-3 capacityNumber"><a href="https://www.uber.com/">Book the cab</a></td></tr></table></div></td></tr>');
 
-              $('table').append(tr);
+
+              $('#service-results-table').append(tr);
+              //$('table').append(tr);
               count = count + 1;
               var str = "<tr data-toggle='collapse' data-target='#demo"+count+"' class='accordion-toggle'>";
               tr = $(str);

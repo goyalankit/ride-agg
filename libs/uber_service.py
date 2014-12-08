@@ -43,6 +43,7 @@ class UberService(BaseService):
         self._get_product_info(src_lat, src_long)
         for res in result['prices']:
             res['image'] = self.image(res['display_name'])
+            res['capacity'] = self.capacity(res['display_name'])
 
         return result
 
@@ -62,6 +63,12 @@ class UberService(BaseService):
             if display_name == product['display_name']:
                 return product['image'];
 
+    def capacity(self, display_name):
+        for product in self.__class__.uber_product_data:
+            if display_name == product['display_name']:
+                return product['capacity'];
+
+
     def _get_product_info(self, src_lat, src_long, force=False):
         params = {
                 'latitude': src_lat,
@@ -71,7 +78,6 @@ class UberService(BaseService):
         if (not self.__class__.uber_product_data) or force:
             status, result = self.make_request("products_url", params)
             self.__class__.uber_product_data = result['products']
-
         return self.__class__.uber_product_data
 
 

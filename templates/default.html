@@ -38,18 +38,18 @@
   </div>
 
     <!-- START of the function -->
-    <div class="col-lg-6" style="float: right; display: none;" id="main-table-div">
-      <div class="panel panel-default">
+    <div class="col-lg-12" style="display: none;" id="main-table-div">
+      <div class="panel panel-default panel-data">
         <!--<div class="panel-heading"><h3>Object Store</h3></div>-->
-        <div class="panel-body">
+        <div class="panel-body" id="table-container">
           <table class="table table-condensed" id="service-results-table" style="border-collapse:collapse;">
-            <thead>
+            <!--thead>
               <tr><th>&nbsp;</th>
                 <th>Service</th>
                 <th>Service Type</th>
                 <th>Fare</th>
               </tr>
-            </thead>
+            </thead-->
 
             <!--
             <tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">
@@ -84,10 +84,14 @@
 
 
   <!-- Footer. Add some stuff to it. -->
-  <div class="bottom-wide-stuff">
-    <div id="map-canvas" style="width:500px;height:500px;"></div>
+  <!--
+     -<div class="bottom-wide-stuff">
+     -->
+       <div id="map-canvas"></div>
     <!--<div class="col-xs-5 line"><hr></div>-->
     <!--<div class="col-xs-2"><hr></div>-->
     <!--<div class="col-xs-5 line"><hr></div>-->
-  </div>
+  <!--
+     -</div>
+     -->
 {% include 'footer.html' %}
