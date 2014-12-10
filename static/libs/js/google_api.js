@@ -85,7 +85,7 @@ $(document).ready(function() {
             for (o = 0; o < result.fares[service].length; o++) {
               tr.append("<td>" + service + "</td>");
               tr.append("<td>" + result.fares[service][o]["service_type"] + "</td>");
-              tr.append("<td>" + result.fares[service][o]["fare"] + " " + result.fares[service][o]["currency_code"] + "</td>");
+              tr.append("<td>" + result.fares[service][o]["fare"].toFixed(2) + " " + result.fares[service][o]["currency_code"] + "</td>");
               tr.append("</tr>");
               //$('table').append(tr);
               $('#service-results-table').append(tr);
@@ -167,6 +167,8 @@ $(document).ready(function() {
         }
 
     }, 'json');
+
+    //$("service-results-table").tablesorter();
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);

@@ -55,7 +55,9 @@ class UberService(BaseService):
         e_l = route.end_location
         result = self._get_fare_by_lat_lang(s_l['lat'], s_l['lon'],
                 e_l['lat'], e_l['lon'])
-        return result
+
+        ret = sorted(result['prices'], key=lambda k: k['high_estimate'])
+        return {"prices" : ret}
 
 
     def image(self, display_name):

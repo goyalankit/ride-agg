@@ -57,5 +57,4 @@ class OlacabsService(BaseService):
                 svc['fare'] += rate_by_time
 
             svc['fare'] += svc.get('service_tax',0)
-
-        return services
+        return sorted(services, key=lambda k: k['fare'])

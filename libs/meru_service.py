@@ -9,6 +9,7 @@ import datetime as dt
 from base_service import BaseService
 from google.appengine.api import urlfetch
 import helper_functions as hf
+from collections import OrderedDict
 
 class MeruService(BaseService):
 
@@ -205,7 +206,11 @@ class MeruService(BaseService):
         return fare
 
     def get_fare(self, route):
-        return self._get_fare_by_distance(route)
+        result = self._get_fare_by_distance(route)
+        result_out = []
+        for s in sorted(result.iteritems(), key=lambda (x, y): y['fare']):
+            result_out.append(s)
+        return OrderedDict(result_out)
 
     """
     This is a method reserved for future use. Just in case we want to pass
