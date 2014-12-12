@@ -6,6 +6,7 @@ import config
 import math
 import operator
 import datetime as dt
+from pytz.gae import pytz
 from base_service import BaseService
 from google.appengine.api import urlfetch
 import helper_functions as hf
@@ -202,7 +203,16 @@ class MeruService(BaseService):
         if not city: return {}
         distance_in_meters     = route.distance
         duration               = route.duration
-        fare = self._calculate_fare(mdata, distance_in_meters, duration, city)
+        # setting the indian time zone
+        tz = pytz.timezone('Asia/Kolkata')
+
+        #print "----------------------------------------------------------"
+        #print dt.datetime.now(tz)
+        #print "**********************************************************"
+        #print dt.datetime.now()
+        #print "----------------------------------------------------------"
+
+        fare = self._calculate_fare(mdata, distance_in_meters, duration, city, dt.datetime.now(tz))
         return fare
 
     def get_fare(self, route):
