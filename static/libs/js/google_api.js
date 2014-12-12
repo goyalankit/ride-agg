@@ -13,6 +13,23 @@ function autocomplete() {
     //setUpInitialTable();
 }
 
+var locField;
+function getLocation(field) {
+    locField = document.getElementById(field);
+    console.log("Getting location for the field: " + field);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+      alert("Failed to get location");
+    }
+}
+
+function showPosition(position) {
+  console.log("Got the location: " + position.coords.latitude + ", " + position.coords.longitude );
+  //  var x = document.getElementById(field);
+  locField.value = position.coords.latitude + ", " + position.coords.longitude;
+}
+
 function create_table_entry() {
   var tr = $('<tr data-toggle="collapse" data-target="#demo1" class="accordion-toggle">');
   tr.append('<td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>');
@@ -20,6 +37,7 @@ function create_table_entry() {
 }
 
 $(document).ready(function() {
+
   var directionsDisplay;
   var directionsService = new google.maps.DirectionsService();
   var map;
@@ -66,6 +84,10 @@ $(document).ready(function() {
       for (var j = 0; j < gmap_response.routes[i].legs.length; j++) {
         // remove steps. They are too much data and we don't need it.
         delete gmap_response.routes[i].legs[j].steps
+        StartLatLng = gmap_response.routes[i].legs[j].start_location
+        EndLatLng = gmap_response.routes[i].legs[j].end_location
+        gmap_response.routes[i].legs[j].start_location = { k:StartLatLng.lat(), B:StartLatLng.lng() }
+        gmap_response.routes[i].legs[j].end_location = { k:EndLatLng.lat(), B:EndLatLng.lng() }
         params.push(gmap_response.routes[i].legs[j]);
       }
     }
@@ -74,7 +96,7 @@ $(document).ready(function() {
       json = result;
         $('#main-table-div').show();
         $('#service-results-table').empty();
-        var tr = $("<thead class='service-data-header'> <tr><th>&nbsp;</th> <th>Service</th> <th>Service Type</th> <th>Fare</th> </tr> </thead>");
+        var tr = $("<thead class='service-data-header'> <tr><th>&nbsp;</th> <th>Service</th> <th>Service Type</th> <th>Fare (INR) </th> </tr> </thead>");
         $('#service-results-table').append(tr);
         tr = $('<tr data-toggle="collapse" data-target="#demo0" class="accordion-toggle">');
         tr.append('<td><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-eye-open"></span></button></td>');
@@ -85,7 +107,7 @@ $(document).ready(function() {
             for (o = 0; o < result.fares[service].length; o++) {
               tr.append("<td>" + service + "</td>");
               tr.append("<td>" + result.fares[service][o]["service_type"] + "</td>");
-              tr.append("<td>" + result.fares[service][o]["fare"].toFixed(2) + " " + result.fares[service][o]["currency_code"] + "</td>");
+              tr.append("<td>" + Math.round(result.fares[service][o]["fare"]) + " " + "</td>");
               tr.append("</tr>");
               //$('table').append(tr);
               $('#service-results-table').append(tr);
@@ -116,7 +138,7 @@ $(document).ready(function() {
             for (i = 0; i < result.fares[service].prices.length; i++) {
               tr.append("<td>" + service + "</td>");
               tr.append("<td>" + result.fares[service].prices[i].display_name + "</td>");
-              tr.append("<td>" + result.fares[service].prices[i].high_estimate + " " + result.fares[service].prices[i].currency_code + "</td>");
+              tr.append("<td>" + Math.round((parseFloat(result.fares[service].prices[i].high_estimate) + parseFloat(result.fares[service].prices[i].low_estimate)) / 2) + " " + "</td>");
               tr.append("</tr>");
               //$('table').append(tr);
               $('#service-results-table').append(tr);
@@ -139,7 +161,7 @@ $(document).ready(function() {
             for (rec in result.fares[service]) {
               tr.append("<td>" + service + "</td>");
               tr.append("<td>" + rec + "</td>");
-              tr.append("<td>" + result.fares[service][rec]["fare"] + " " + result.fares[service][rec].rule.currency_code +"</td>");
+              tr.append("<td>" + Math.round(result.fares[service][rec]["fare"]) + " " +"</td>");
               tr.append("</tr>");
               $('#service-results-table').append(tr);
               //tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'">' + result.fares[service][rec]["rule"]["info"] + "</div></td></tr>");
