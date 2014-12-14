@@ -188,11 +188,11 @@ $(document).ready(function() {
               if (typeof result.fares[service][rec]["rule"]["info"] !== "undefined") {
                 tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
                      <table class="table table-striped"><tr><td  class="col-md-4"> <i class="fa fa-clock-o"></i>  <b>Waiting:</b> \
-                     ' + result.fares[service][rec]["rule"]["info"] + '"</td><td><i class="fa fa-moon-o"></i>Night Charges Used</i></td></tr></table></div></td></tr>');
+                     ' + result.fares[service][rec]["rule"]["info"] + '</td><td><i class="fa fa-moon-o">'+ (result.fares[service][rec]["rule"]["night"] == true ? ' Night Charges' : ' Day Charges') +'</i></td></tr></table></div></td></tr>');
               } else if (typeof result.fares[service][rec].rule.wait_charge_per_min !== "undefined"){
                 tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
                      <table class="table table-striped"><tr><td  class="col-md-4"> \
-                     ' + " <i class='fa fa-clock-o'></i> <b>Waiting: </b>" + result.fares[service][rec].rule.wait_charge_per_min + ' INR per minute</td><td><i class="fa fa-moon-o">Night Charges Used</i></td></tr></table></div></td></tr>');
+                     ' + " <i class='fa fa-clock-o'></i> <b>Waiting: </b>" + result.fares[service][rec].rule.wait_charge_per_min + ' INR per minute</td><td><i class="fa fa-moon-o">'+ (result.fares[service][rec]["rule"]["night"] == true ? 'Night Charges' : 'Day Charges') +'</i></td></tr></table></div></td></tr>');
               }
 
               //$('table').append(tr);
