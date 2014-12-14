@@ -59,8 +59,8 @@ body {
 }
 
 .col-md-3.capacityNumber {
-  padding-top: 2.5%;
-  padding-left: 4.5%;
+  padding-top: 2.4%;
+  /*padding-left: 4.5%;*/
 }
 
 /*Google Api*/
@@ -198,4 +198,17 @@ top: 0;
 .row-xs-4 { height: 33.33333333333333%;}
 .row-xs-3 { height: 25%; }
 .row-xs-2 { height: 16.666666666666664%; }
-.row-xs-1 { height: 8.333333333333332%; } 
+.row-xs-1 { height: 8.333333333333332%; }
+
+@media screen and (max-width: 500px) {
+  #productForm {
+    margin-top: 15%;
+  }
+
+  #table-container {
+    padding-left: 0%;
+    padding-right: 4%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+  }
+}

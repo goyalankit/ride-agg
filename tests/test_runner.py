@@ -2,7 +2,7 @@
 import optparse
 import sys
 import unittest
-import os
+import os, imp
 
 USAGE = """%prog SDK_PATH TEST_PATH
 Run unit tests for App Engine apps.
@@ -15,6 +15,7 @@ def main(sdk_path, test_path):
     if sdk_path not in sys.path: sys.path.insert(0, sdk_path)
     if test_path not in sys.path: sys.path.insert(0, test_path)
     sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+    sys.path.append(os.path.join(os.path.dirname(__file__), '../pytz'))
     if os.environ.get('TRAVIS') == "true":
         sys.path.append(os.path.join(os.path.dirname(__file__), './google_appengine'))
     import dev_appserver

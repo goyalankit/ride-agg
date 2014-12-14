@@ -22,7 +22,7 @@ class UberService(BaseService):
         uber_config = config.app_config.get('uber')
         parameters.update({ 'server_token': uber_config.get('server_token')})
         url_with_params = uber_config.get(url_type) + '?' + urllib.urlencode(parameters)
-        response = urlfetch.fetch(url_with_params, method=urlfetch.GET)
+        response = urlfetch.fetch(url_with_params, method=urlfetch.GET, deadline=60)
         json_response = json.loads(response.content)
         return response.status_code, json_response
 
