@@ -100,11 +100,18 @@ $(document).ready(function() {
         params.push(gmap_response.routes[i].legs[j]);
       }
     }
+
+        html_string = "<p>Route Distance: <dist>"+ gmap_response.routes[0].legs[0].distance.text +"</p> <p>Estimated Time: "+ gmap_response.routes[0].legs[0].duration.text + "</p>";// ""<p>Route Summary: " + gmap_response.routes[0].summary +"</p>";
+
+        $('#fare-table-div').show();
+        $('#dist-data-container').html(html_string);
     // make the post request to server
     $.post('/', {data: JSON.stringify(params)}, function(result) {
-      json = result;
+
+        json = result;
         $('#main-table-div').show();
         $('#service-results-table').empty();
+
         var tr = $("<thead class='service-data-header'> <tr><th>&nbsp;</th> <th>Service</th> <th>Service Type</th> <th>Fare (INR) </th> </tr> </thead>");
         $('#service-results-table').append(tr);
         tr = $('<tr data-toggle="collapse" data-target="#demo0" class="accordion-toggle">');
@@ -187,12 +194,12 @@ $(document).ready(function() {
               // waiting info
               if (typeof result.fares[service][rec]["rule"]["info"] !== "undefined") {
                 tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
-                     <table class="table table-striped"><tr><td  class="col-md-4"> <i class="fa fa-clock-o"></i>  <b>Waiting:</b> \
-                     ' + result.fares[service][rec]["rule"]["info"] + '</td><td><i class="fa fa-moon-o">'+ (result.fares[service][rec]["rule"]["night"] == true ? ' Night Charges' : ' Day Charges') +'</i></td></tr></table></div></td></tr>');
+                     <table class="table table-striped"><tr><td  class="col-md-3"> <i class="fa fa-clock-o"></i>  <b>Waiting:</b> \
+                     ' + result.fares[service][rec]["rule"]["info"] + '</td><td class="col-md-3"><i class="fa fa-moon-o">'+ (result.fares[service][rec]["rule"]["night"] == true ? ' Night Charges' : ' Day Charges') +'</i></td><td class="col-md-3 olabook"><a href="http://www.olacabs.com/">Book the cab</a></td></tr></table></div></td></tr>');
               } else if (typeof result.fares[service][rec].rule.wait_charge_per_min !== "undefined"){
                 tr = $('<tr><td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="demo'+count+'"> \
-                     <table class="table table-striped"><tr><td  class="col-md-4"> \
-                     ' + " <i class='fa fa-clock-o'></i> <b>Waiting: </b>" + result.fares[service][rec].rule.wait_charge_per_min + ' INR per minute</td><td><i class="fa fa-moon-o">'+ (result.fares[service][rec]["rule"]["night"] == true ? 'Night Charges' : 'Day Charges') +'</i></td></tr></table></div></td></tr>');
+                     <table class="table table-striped"><tr><td  class="col-md-3"> \
+                     ' + " <i class='fa fa-clock-o'></i> <b>Waiting: </b>" + result.fares[service][rec].rule.wait_charge_per_min + ' INR per minute</td><td class="col-md-3"><i class="fa fa-moon-o">'+ (result.fares[service][rec]["rule"]["night"] == true ? ' Night Charges' : ' Day Charges') +'</i></td><td class="col-md-3 olabook"><a href="http://www.olacabs.com/">Book the cab</a></td></tr></table></div></td></tr>');
               }
 
               //$('table').append(tr);

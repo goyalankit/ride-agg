@@ -118,14 +118,32 @@ html, body, #map-canvas {
   color: white;
 }
 
+#fare-table-div {
+  margin-top: 1%;
+  width: 100%;
+  padding: 0px;
+}
+
+#dist-data-div {
+background-color: #0E4F6E;;
+color: white;
+}
+
 #main-table-div {
   margin-top: 1%;
   width: 100%;
   padding: 0;
   position: relative;
   /*
-   *background-color: #000;
+   * background-color: #000;
    */
+}
+
+#dist-data-container {
+  padding-left: 44%;
+  padding-right: 18%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 #table-container {
@@ -211,4 +229,12 @@ top: 0;
     padding-top: 2%;
     padding-bottom: 2%;
   }
+
+  #dist-data-container {
+    padding-left: 10%;
+    padding-right: 18%;
+    padding-top: 3%;
+    padding-bottom: 2%;
+  }
+
 }
