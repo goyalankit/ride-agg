@@ -5,6 +5,12 @@ import datetime
 from operator import itemgetter
 from itertools import imap
 
+
+cities_near_by = {
+            "Bangalore" : ["bengaluru", "bangalore"],
+            "Delhi" : ["gurgaon", "noida", "delhi"]
+        }
+
 """
 Get the unique value for a given list
 """
@@ -21,8 +27,13 @@ address.
 def find_city(mdata, route):
     start_address = route.start_address.lower()
 
-    for city in imap(itemgetter('city'),mdata):
+    for city in imap(itemgetter('city'), mdata):
         if city.lower() in start_address: return city
+
+    for main_city in cities_near_by:
+        for city in cities_near_by.get(main_city, []):
+            if city.lower() in start_address:
+                return main_city
 
     return None
 

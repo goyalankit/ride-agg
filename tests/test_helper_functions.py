@@ -25,3 +25,7 @@ class TestHelperFunctions(unittest.TestCase):
         city = helper_functions.find_city([{'city' : 'muMBai'}], self.route)
         self.assertEqual('Mumbai', city.capitalize())
 
+        self.route.start_address = "some place in gurgaon"
+        city = helper_functions.find_city([{'city' : 'mumbai'}], self.route)
+        self.assertEqual(city, "Delhi")
+

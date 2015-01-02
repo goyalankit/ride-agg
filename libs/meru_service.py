@@ -6,7 +6,7 @@ import config
 import math
 import operator
 import datetime as dt
-from pytz.gae import pytz
+import pytz
 from base_service import BaseService
 from google.appengine.api import urlfetch
 import helper_functions as hf
