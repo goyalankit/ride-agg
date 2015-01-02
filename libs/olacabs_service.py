@@ -4,6 +4,7 @@ import yaml
 import urllib
 import config
 import datetime
+import helper_functions as hf
 from base_service import BaseService
 
 
@@ -24,7 +25,10 @@ class OlacabsService(BaseService):
     def query_services(self,route,time=datetime.datetime.now()):
         address = route.start_address.lower()
 
-        f = lambda s: ((s['city'].lower() in address)
+        city = hf.find_city(self.get_data(), route)
+        if city: city = city.lower()
+
+        f = lambda s: ((s['city'].lower() in city)
                        and (('time_from' not in s)
                             or (s['time_from'] <= time <= s['time_to'])))
 
